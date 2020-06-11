@@ -9,7 +9,7 @@ function App() {
   const [isHandTrackingEnabled, setIsHandTrackingEnabled] = useState(false);
   return (
     <div className="App">
-      {/* <button onClick={() => setIsHandTrackingEnabled(!isHandTrackingEnabled)}>
+      <button onClick={() => setIsHandTrackingEnabled(!isHandTrackingEnabled)}>
         {isHandTrackingEnabled ? "disable" : "enable"} hand tracking
       </button>
       {isHandTrackingEnabled && (
@@ -19,8 +19,8 @@ function App() {
           }
         />
       )}
-      <StepSequencer /> */}
-      <Pickup />
+      <StepSequencer />
+      {/* <Pickup /> */}
     </div>
   );
 }
