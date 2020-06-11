@@ -11,11 +11,10 @@ function StepSequencerUI() {
   const initialise = () => {
     const sequencer = StepSequencer.Default();
     sequenceRef.current = sequencer.sequence();
+    sequencer.registerOnTickFunction((time, step)=>{console.log(time, step)})
     sequencerRef.current = sequencer;
     const synth = sequencer.connected();
     const reverb = new Reverb({ decay: 1, wet: 0.9 }).toMaster();
-    const delay = new Delay("1n").toMaster();
-    reverb.connect(delay);
     synth.connect(reverb);
   };
 

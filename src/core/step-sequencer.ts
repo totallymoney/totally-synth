@@ -1,8 +1,9 @@
-import { Sequence, PolySynth } from "tone";
+import { Sequence, PolySynth, Synth } from "tone";
 import {
   Instrument,
   InstrumentOptions,
 } from "tone/build/esm/instrument/Instrument";
+import { Tone } from "tone/build/esm/core/Tone";
 
 class StepSequencer {
   private grid: SequencerGrid;
@@ -26,28 +27,58 @@ class StepSequencer {
 
   connected = () => this.instrument;
 
+  registerOnTickFunction = (fun: (time: any, step: number) => undefined) => {
+    this.onTickEvents.push(fun);
+  };
+
+  private onTick = (_time: any, step: number) => {
+    const stepNotes = this.grid.getStep(step);
+    stepNotes.forEach((note) => {
+      if (note.velocity > 0) {
+        if (this.instrument instanceof Instrument)
+          this.instrument.triggerAttackRelease(
+            this.notes[note.pitch],
+            "8n",
+            _time,
+            note.velocity
+          );
+      }
+    });
+  };
+
+  private onTickEvents = [this.onTick];
+
+  notes : string[] = [
+    "A2",
+    "C3",
+    "A3",
+    "G3",
+    "E4",
+    "D4",
+    "C5",
+    "A5",
+    "G5",
+    "E6",
+    "D6",
+    "C7",
+  ];
+
   sequence = () => {
-    const fun = (_time: any, step: number) => {
-      const stepNotes = this.grid.getStep(step);
-      stepNotes.forEach((note) => {
-        if (note.velocity > 0) {
-          if (this.instrument instanceof Instrument)
-            this.instrument.triggerAttackRelease(
-              note.pitch,
-              "16n",
-              _time,
-              note.velocity
-            );
-        }
+    const fun = (time: any, step: number) => {
+      this.onTickEvents.forEach((f) => {
+        f(time, step);
       });
     };
     const steps = [];
     for (let s = 0; s < this.grid.steps; s++) {
       steps.push(s);
     }
-
     return new Sequence(fun, steps, this.loopInterval);
   };
+
+  setNotes = (notes:string[]) => {
+    this.notes = notes;
+  }
 
   //Output a default step sequencer with a synth
   static Default = () => {
@@ -72,25 +103,10 @@ class SequencerGrid {
     for (let s = 0; s < this.steps; s++) {
       const cells = [];
       for (let c = 0; c < 12; c++)
-        cells.push(new SequencerCell(this.notes[c], 0));
+        cells.push(new SequencerCell(c, 0));
       this.grid.push(cells);
     }
   };
-
-  notes = [
-    "C4",
-    "C#4",
-    "D4",
-    "D#4",
-    "E4",
-    "F4",
-    "F#4",
-    "G4",
-    "G#4",
-    "A4",
-    "A#4",
-    "B4",
-  ];
 
   getStep = (step: number) => {
     return this.grid[step];
@@ -98,7 +114,7 @@ class SequencerGrid {
 
   setCell = (step: number, note: number, velocity: number) => {
     this.grid[step][note].velocity = velocity;
-    this.grid[step][note].pitch = this.notes[note];
+    this.grid[step][note].pitch = note;
   };
 
   grid: SequencerCell[][];
@@ -106,9 +122,9 @@ class SequencerGrid {
 
 class SequencerCell {
   velocity: number;
-  pitch: string;
+  pitch: number;
 
-  constructor(pitch: string, velocity: number) {
+  constructor(pitch: number, velocity: number) {
     this.pitch = pitch;
     this.velocity = velocity;
   }
