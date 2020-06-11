@@ -30,7 +30,7 @@ class StepSequencer {
           if (this.synth instanceof Synth)
             this.synth.triggerAttackRelease(
               note.pitch,
-              "1n",
+              "16n",
               _time,
               note.velocity
             );
@@ -50,6 +50,18 @@ class StepSequencer {
     const sequencer = new StepSequencer(16);
     const synth = new Synth().toMaster();
     sequencer.connect(synth);
+    sequencer.setCell(0, 0, 1);
+    sequencer.setCell(1, 4, 1);
+    sequencer.setCell(2, 0, 1);
+    sequencer.setCell(3, 7, 1);
+    sequencer.setCell(4, 0, 1);
+    sequencer.setCell(5, 4, 1);
+    sequencer.setCell(6, 0, 1);
+    sequencer.setCell(7, 7, 1);
+    sequencer.setCell(8, 0, 1);
+    sequencer.setCell(9, 4, 1);
+    sequencer.setCell(10, 0, 1);
+    sequencer.setCell(11, 9, 1);
     return sequencer;
   };
 }
