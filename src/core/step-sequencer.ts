@@ -50,7 +50,7 @@ class StepSequencer {
   //Output a default step sequencer with a synth
   static Default = () => {
     const sequencer = new StepSequencer(16);
-    const synth = new PolySynth().toMaster();
+    const synth = new PolySynth();
     sequencer.connect(synth);
     sequencer.setCell(0, 0, 1);
     sequencer.setCell(0, 4, 1);
