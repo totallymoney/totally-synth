@@ -1,0 +1,94 @@
+import { Sequence, Synth} from "tone"
+
+class StepSequencer {
+    
+    private grid: SequencerGrid;
+
+    private loopInterval:string;
+
+    synth: Synth | undefined;
+
+    constructor(steps:number){
+        this.grid = new SequencerGrid(steps);
+        this.loopInterval = steps+"n"; //sets the loop interval to be X whole notes.
+    }
+
+    setCell = (step:number, note:number, value:number) =>{
+        this.grid.setCell(step,note,value);
+    }
+
+    connect = (synth:Synth) => {
+        this.synth = synth;
+    }
+
+    sequence = () => {
+        const fun = (_time: any, step:number) => {
+            const stepNotes = this.grid.getStep(step);
+            stepNotes.forEach(note => {
+                if(note.velocity > 0){
+                    if(this.synth instanceof Synth)
+                        this.synth.triggerAttackRelease(note.pitch,"1n");
+                }
+            });
+        }
+        const steps = []
+        for(let s = 0; s < this.grid.steps; s++){
+            steps.push(s);
+        }
+
+        return new Sequence(fun, steps, this.loopInterval);
+    }
+
+    //Output a default step sequencer with a synth
+    static Default = () => {
+        const sequencer = new StepSequencer(16);
+        const synth = new Synth().toMaster();
+        sequencer.connect(synth);
+        return sequencer 
+    }
+}
+
+class SequencerGrid {
+    
+    steps: number;
+    
+    constructor(steps:number){
+        this.steps = steps;
+        this.grid = [];
+        this.init();
+    }
+
+    init = () => {
+        this.grid = [];
+        for(let s = 0; s < this.steps; s++)
+        {
+            const cells = [];
+            for(let c = 0; c < 12; c++)
+                cells.push(new SequencerCell(c,0));
+            this.grid.push(cells);
+        }
+    }
+
+    getStep = (step:number) => {
+        return this.grid[step];
+    }
+
+    setCell = (step:number, note:number, velocity:number) => {
+        this.grid[step][note].velocity = velocity;
+    }
+
+    grid : SequencerCell[][];
+
+}
+
+class SequencerCell {
+    velocity:number;
+    pitch:string;
+
+    constructor(pitch:string,velocity:number){
+        this.pitch = pitch;
+        this.velocity = velocity
+    }
+}
+
+export { StepSequencer }
