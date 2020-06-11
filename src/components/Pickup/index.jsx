@@ -5,7 +5,6 @@ import RoundButton from '../RoundButton'
 import PkupButton from '../PkupButton';
 
 const Table = styled.div`
-  border: 1px solid;
   margin: 0 auto;
 
   width: 800px;
@@ -13,24 +12,23 @@ const Table = styled.div`
 `
 
 const TableLine = styled.div`
-  border: 1px solid;
   width: 100%;
   height: 100px;
 `
 
 const TableControl = styled.div`
-  border: 1px solid;
   width: 100%;
   height: 100px;
 `
-
 
 
 function Pickup() {
   return (
     <Table>
       <TableLine>
-        <PkupButton color="cyan"/>
+        <PkupButton color="cyan" size="50"/>
+        <PkupButton color="cyan" size="50"/>
+        <PkupButton color="cyan" size="50"/>
       </TableLine>
       <TableControl>
         <RoundButton />
