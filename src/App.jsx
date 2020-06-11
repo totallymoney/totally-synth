@@ -7,7 +7,7 @@ import Synth from "./Synth";
 import Pickup from "./components/Pickup";
 
 function App() {
-  const [isHandTrackingEnabled, setIsHandTrackingEnabled] = useState(false);
+  const [isThereminEnabled, setIsThereminEnabled] = useState(false);
   const [position, setPosition] = useState();
   const handleHandPositionChange = (position) => {
     console.log("Detected position: ", position);
@@ -15,13 +15,19 @@ function App() {
   };
   return (
     <div className="App">
-      <button onClick={() => setIsHandTrackingEnabled(!isHandTrackingEnabled)}>
-        {isHandTrackingEnabled ? "disable" : "enable"} hand tracking
+      <button onClick={() => setIsThereminEnabled(!isThereminEnabled)}>
+        {isThereminEnabled ? "disable" : "enable"} theremin
       </button>
-      {isHandTrackingEnabled && (
-        <HandTrack onPositionChange={handleHandPositionChange} />
+      {isThereminEnabled && (
+        <HandTrack
+          onPositionChange={handleHandPositionChange}
+          shouldRenderPredictions
+        />
       )}
-      <Synth velocity={position} />
+      <Synth
+        isPlaying={isThereminEnabled}
+        frequency={position && position[1] > 0 ? position[1] : 0}
+      />
       <StepSequencer />
       {/* <Pickup /> */}
     </div>
