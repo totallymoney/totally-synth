@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import StepSequencer from "./StepSequencer";
 import HandTrack from "./HandTrack";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
           console.log("Detected position: ", position)
         }
       />
+      <StepSequencer />
       <header className="App-header"></header>
     </div>
   );
