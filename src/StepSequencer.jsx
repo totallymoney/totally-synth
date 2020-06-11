@@ -11,7 +11,7 @@ function StepSequencerUI() {
   const initialise = () => {
     const sequencer = StepSequencer.Default();
     sequenceRef.current = sequencer.sequence();
-    sequencer.registerOnTickFunction((time, step)=>{console.log(time, step)})
+    sequencer.registerOnTickFunction(handleOnTick)
     sequencerRef.current = sequencer;
     const synth = sequencer.connected();
     const reverb = new Reverb({ decay: 1, wet: 0.9 }).toMaster();
@@ -24,6 +24,10 @@ function StepSequencerUI() {
     }
     sequencerRef.current.setCell(step, note, velocity);
   };
+
+  const handleOnTick = (time,step)=> {
+    
+  }
 
   const toggleStart = () => {
     if (sequencerRef.current == null) {
