@@ -8,6 +8,7 @@ function StepSequencerUI() {
   const sequencerRef = useRef(null);
   const sequenceRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [ currentStep, setCurrentStep ] = useState(-1);
   const initialise = () => {
     const sequencer = StepSequencer.Default();
     sequenceRef.current = sequencer.sequence();
@@ -18,6 +19,7 @@ function StepSequencerUI() {
     synth.connect(reverb);
   };
 
+
   const handleCellClick = (step, note, velocity) => {
     if (!isPlaying) {
       toggleStart();
@@ -25,8 +27,8 @@ function StepSequencerUI() {
     sequencerRef.current.setCell(step, note, velocity);
   };
 
-  const handleOnTick = (time,step)=> {
-    
+  const handleOnTick = (_,step)=> {
+    setCurrentStep(step)
   }
 
   const toggleStart = () => {
@@ -49,7 +51,7 @@ function StepSequencerUI() {
 
   return (
     <div>
-      <Pickup setCell={handleCellClick} />
+      <Pickup setCell={handleCellClick} currentStep={currentStep} />
     </div>
   );
 }
