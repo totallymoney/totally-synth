@@ -17,15 +17,20 @@ function StepSequencerUI() {
     // example sequence
     sequencerRef.current.setCell(0, 0, 1);
     sequencerRef.current.setCell(1, 1, 1);
-    sequencerRef.current.setCell(2, 0, 1);
-    sequencerRef.current.setCell(3, 1, 1);
-    sequencerRef.current.setCell(4, 0, 1);
-    sequencerRef.current.setCell(5, 1, 1);
-    sequencerRef.current.setCell(6, 0, 1);
-    sequencerRef.current.setCell(7, 1, 1);
-    sequencerRef.current.setCell(8, 0, 1);
-    sequencerRef.current.setCell(9, 1, 1);
-
+    sequencerRef.current.setCell(2, 2, 1);
+    sequencerRef.current.setCell(3, 3, 1);
+    sequencerRef.current.setCell(4, 4, 1);
+    sequencerRef.current.setCell(5, 5, 1);
+    sequencerRef.current.setCell(6, 6, 1);
+    sequencerRef.current.setCell(7, 7, 1);
+    sequencerRef.current.setCell(8, 8, 1);
+    sequencerRef.current.setCell(9, 9, 1);
+    sequencerRef.current.setCell(10, 10, 1);
+    sequencerRef.current.setCell(11, 11, 1);
+    sequencerRef.current.setCell(12, 12, 1);
+    sequencerRef.current.setCell(13, 13, 1);
+    sequencerRef.current.setCell(14, 14, 1);
+    sequencerRef.current.setCell(15, 15, 1);
   };
 
   const toggleStart = () => {
