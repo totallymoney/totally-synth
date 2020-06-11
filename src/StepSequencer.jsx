@@ -10,7 +10,6 @@ function StepSequencerUI() {
   const initialise = () => {
     const sequencer = StepSequencer.Default();
     sequenceRef.current = sequencer.sequence();
-    
     sequencerRef.current = sequencer;
   };
 

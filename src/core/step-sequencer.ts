@@ -1,11 +1,13 @@
-import { Sequence, Synth } from "tone";
+import { Sequence, PolySynth } from "tone";
+import { Instrument, InstrumentOptions } from "tone/build/esm/instrument/Instrument";
+
 
 class StepSequencer {
   private grid: SequencerGrid;
 
   private loopInterval: string;
 
-  private synth: Synth | undefined;
+  private instrument: Instrument<InstrumentOptions> | undefined;
 
   constructor(steps: number) {
     this.grid = new SequencerGrid(steps);
@@ -16,19 +18,19 @@ class StepSequencer {
     this.grid.setCell(step, note, velocity);
   };
 
-  connect = (synth: Synth) => {
-    this.synth = synth;
+  connect = (instrument: Instrument<InstrumentOptions>) => {
+    this.instrument = instrument;
   };
 
-  connected = () => this.synth;
+  connected = () => this.instrument;
 
   sequence = () => {
     const fun = (_time: any, step: number) => {
       const stepNotes = this.grid.getStep(step);
       stepNotes.forEach((note) => {
         if (note.velocity > 0) {
-          if (this.synth instanceof Synth)
-            this.synth.triggerAttackRelease(
+          if (this.instrument instanceof Instrument)
+            this.instrument.triggerAttackRelease(
               note.pitch,
               "16n",
               _time,
@@ -48,13 +50,13 @@ class StepSequencer {
   //Output a default step sequencer with a synth
   static Default = () => {
     const sequencer = new StepSequencer(16);
-    const synth = new Synth().toMaster();
+    const synth = new PolySynth().toMaster();
     sequencer.connect(synth);
     sequencer.setCell(0, 0, 1);
-    sequencer.setCell(1, 4, 1);
-    sequencer.setCell(2, 0, 1);
+    sequencer.setCell(0, 4, 1);
+    sequencer.setCell(3, 0, 1);
     sequencer.setCell(3, 7, 1);
-    sequencer.setCell(4, 0, 1);
+    sequencer.setCell(5, 0, 1);
     sequencer.setCell(5, 4, 1);
     sequencer.setCell(6, 0, 1);
     sequencer.setCell(7, 7, 1);
