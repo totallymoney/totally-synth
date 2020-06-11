@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import RoundButton from '../RoundButton'
 import PkupButton from '../PkupButton';
+import RegularSlider from '../RegularSlider';
 
 const Table = styled.div`
   margin: 0 auto;
@@ -32,6 +33,7 @@ function Pickup() {
       </TableLine>
       <TableControl>
         <RoundButton />
+        <RegularSlider />
       </TableControl>
     </Table>
   );
