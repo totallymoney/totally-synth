@@ -26,28 +26,32 @@ const TableControl = styled.div`
 const emptyGrid = Array.apply(null, Array(16));
 const emptyNotes = Array.apply(null, Array(12));
 
-const color = d3.scaleSequential().domain([10,1]).interpolator(d3.interpolateViridis);
+const color = d3.scaleSequential().domain([13,1]).interpolator(d3.interpolateViridis);
 
 function Pickup({ setCell, currentStep }) {
+
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
+  
   const toggleIsActive = (x, y) => {
     const newGrid = grid.map((notes) => [...notes]);
     newGrid[x][y] = !newGrid[x][y];
     setGrid(newGrid);
     setCell(x, y, newGrid[x][y]);
   };
-  const getColor = (stepIndex) =>{
+
+  const getColor = (noteIndex, stepIndex ) =>{
     if(stepIndex == currentStep)
-      return "CornflowerBlue";
-    return "cyan"
+      return 'magenta';
+    return color(noteIndex)
   }
+
   return (
     <Table>
       {emptyNotes.map((_, noteIndex) => (
         <TableLine>
           {emptyGrid.map((_, stepIndex) => (
             <PkupButton
-              color={color(noteIndex)}
+              color={getColor(noteIndex, stepIndex)}
               size="40"
               isActive={grid[stepIndex][noteIndex]}
               step={stepIndex}
