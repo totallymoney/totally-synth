@@ -6,11 +6,11 @@ import HandTrack from "./HandTrack";
 function App() {
   return (
     <div className="App">
-      {/* <HandTrack
+      <HandTrack
         onPositionChange={(position) =>
           console.log("Detected position: ", position)
         }
-      /> */}
+      />
       <StepSequencer />
       <header className="App-header"></header>
     </div>

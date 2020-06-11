@@ -1,36 +1,41 @@
-import React, { useRef, useEffect } from "react";
-import CoreSequencer from "./core/step-sequencer";
+import React, { useState, useRef, useEffect } from "react";
+import { Synth } from "tone";
+import { StepSequencer } from "./core/step-sequencer";
 
-// The step sequencer has 3 main functions:
-// [ ] setCell: to set the cells on the sequencer
-// [x] sequence: returns a new Tone.Sequence based on the grid
-// when the sequence is played, it should  trigger notes on the synth
-
-function StepSequencer() {
+function StepSequencerUI() {
   const sequencerRef = useRef(null);
-  const toggleStart = () =>
-    sequencerRef.current && sequencerRef.current.sequence().start(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const initialise = () => {
+    const sequencer = new StepSequencer(16);
+    const synth = new Synth().toMaster();
+    // test sound
+    synth.triggerAttackRelease("C4", "8n");
+    sequencer.connect(synth);
+    sequencerRef.current = sequencer;
 
-  // setup the sequencer
+    // example sequence
+    sequencerRef.current.setCell(0, 0, 1);
+    sequencerRef.current.setCell(1, 1, 1);
+  };
+
+  const toggleStart = () => {
+    if (sequencerRef.current == null) {
+      initialise();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
   useEffect(() => {
-    sequencerRef.current = CoreSequencer.Default();
-    sequencerRef.current.setCell(0, 0);
-    sequencerRef.current.setCell(1, 1);
-    sequencerRef.current.setCell(2, 2);
-    sequencerRef.current.setCell(3, 3);
-    sequencerRef.current.setCell(4, 4);
-    sequencerRef.current.setCell(5, 5);
-    sequencerRef.current.setCell(6, 6);
-    sequencerRef.current.setCell(7, 7);
-    sequencerRef.current.setCell(8, 8);
-    sequencerRef.current.setCell(9, 9);
-  }, []);
+    if (isPlaying) {
+      sequencerRef.current.sequence().start(0);
+    }
+  }, [isPlaying]);
 
   return (
     <div>
-      <button onClick={toggleStart}>start</button>
+      <button onClick={toggleStart}>{isPlaying ? "stop ||" : "play |>"}</button>
     </div>
   );
 }
 
-export default StepSequencer;
+export default StepSequencerUI;
