@@ -39,9 +39,9 @@ function Pickup({ setCell, currentStep }) {
     setCell(x, y, newGrid[x][y]);
   };
 
-  const getColor = (noteIndex, stepIndex ) =>{
+  const getColor = (noteIndex, stepIndex) =>{
     if(stepIndex == currentStep)
-      return 'magenta';
+      return 'cyan';
     return color(noteIndex)
   }
 
