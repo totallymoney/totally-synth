@@ -28,7 +28,7 @@ const emptyNotes = Array.apply(null, Array(12));
 
 const color = d3.scaleSequential().domain([10,1]).interpolator(d3.interpolateViridis);
 
-function Pickup({ setCell }) {
+function Pickup({ setCell, currentStep }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
   const toggleIsActive = (x, y) => {
     const newGrid = grid.map((notes) => [...notes]);
@@ -36,6 +36,11 @@ function Pickup({ setCell }) {
     setGrid(newGrid);
     setCell(x, y, newGrid[x][y]);
   };
+  const getColor = (stepIndex) =>{
+    if(stepIndex == currentStep)
+      return "CornflowerBlue";
+    return "cyan"
+  }
   return (
     <Table>
       {emptyNotes.map((_, noteIndex) => (
