@@ -69,12 +69,15 @@ class SequencerGrid {
         }
     }
 
+    notes = ["C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4"];
+
     getStep = (step:number) => {
         return this.grid[step];
     }
 
     setCell = (step:number, note:number, velocity:number) => {
         this.grid[step][note].velocity = velocity;
+        this.grid[step][note].pitch = this.notes[note];
     }
 
     grid : SequencerCell[][];
