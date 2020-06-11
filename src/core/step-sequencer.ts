@@ -66,7 +66,7 @@ class SequencerGrid {
         {
             const cells = [];
             for(let c = 0; c < 12; c++)
-                cells.push(new SequencerCell(c,0));
+                cells.push(new SequencerCell(this.notes[c],0));
             this.grid.push(cells);
         }
     }
