@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Reverb, Delay } from "tone";
 import { StepSequencer } from "./core/step-sequencer";
 import { Transport } from "tone";
+import Pickup from "./components/Pickup";
 
 function StepSequencerUI() {
   const sequencerRef = useRef(null);
@@ -16,6 +17,13 @@ function StepSequencerUI() {
     const delay = new Delay("1n").toMaster();
     reverb.connect(delay);
     synth.connect(reverb);
+  };
+
+  const handleCellClick = (step, note, velocity) => {
+    if (!isPlaying) {
+      toggleStart();
+    }
+    sequencerRef.current.setCell(step, note, velocity);
   };
 
   const toggleStart = () => {
@@ -38,7 +46,7 @@ function StepSequencerUI() {
 
   return (
     <div>
-      <button onClick={toggleStart}>{isPlaying ? "stop ||" : "play |>"}</button>
+      <Pickup setCell={handleCellClick} />
     </div>
   );
 }

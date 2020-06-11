@@ -28,7 +28,6 @@ function App() {
       )}
       <Synth isPlaying={isThereminEnabled} frequency={frequencyFromPosition} />
       <StepSequencer />
-      <Pickup />
     </div>
   );
 }

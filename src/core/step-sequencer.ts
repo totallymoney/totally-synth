@@ -1,6 +1,8 @@
 import { Sequence, PolySynth } from "tone";
-import { Instrument, InstrumentOptions } from "tone/build/esm/instrument/Instrument";
-
+import {
+  Instrument,
+  InstrumentOptions,
+} from "tone/build/esm/instrument/Instrument";
 
 class StepSequencer {
   private grid: SequencerGrid;
@@ -52,18 +54,6 @@ class StepSequencer {
     const sequencer = new StepSequencer(16);
     const synth = new PolySynth();
     sequencer.connect(synth);
-    sequencer.setCell(0, 0, 1);
-    sequencer.setCell(0, 4, 1);
-    sequencer.setCell(3, 0, 1);
-    sequencer.setCell(3, 7, 1);
-    sequencer.setCell(5, 0, 1);
-    sequencer.setCell(5, 4, 1);
-    sequencer.setCell(6, 0, 1);
-    sequencer.setCell(7, 7, 1);
-    sequencer.setCell(8, 0, 1);
-    sequencer.setCell(9, 4, 1);
-    sequencer.setCell(10, 0, 1);
-    sequencer.setCell(11, 9, 1);
     return sequencer;
   };
 }
