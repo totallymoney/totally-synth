@@ -6,7 +6,7 @@ class StepSequencer {
 
     private loopInterval:string;
 
-    synth: Synth | undefined;
+    private synth: Synth | undefined;
 
     constructor(steps:number){
         this.grid = new SequencerGrid(steps);
@@ -20,6 +20,8 @@ class StepSequencer {
     connect = (synth:Synth) => {
         this.synth = synth;
     }
+
+    connected = () => this.synth;
 
     sequence = () => {
         const fun = (_time: any, step:number) => {
