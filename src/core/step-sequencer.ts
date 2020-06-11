@@ -5,7 +5,7 @@ class StepSequencer {
 
   private loopInterval: string;
 
-  synth: Synth | undefined;
+  private synth: Synth | undefined;
 
   constructor(steps: number) {
     this.grid = new SequencerGrid(steps);
@@ -19,6 +19,8 @@ class StepSequencer {
   connect = (synth: Synth) => {
     this.synth = synth;
   };
+
+  connected = () => this.synth;
 
   sequence = () => {
     const fun = (_time: any, step: number) => {
@@ -65,7 +67,8 @@ class SequencerGrid {
     this.grid = [];
     for (let s = 0; s < this.steps; s++) {
       const cells = [];
-      for (let c = 0; c < 12; c++) cells.push(new SequencerCell(c, 0));
+      for (let c = 0; c < 12; c++)
+        cells.push(new SequencerCell(this.notes[c], 0));
       this.grid.push(cells);
     }
   };
@@ -89,7 +92,7 @@ class SequencerGrid {
     return this.grid[step];
   };
 
-  setCell = (step: number, note: number, velocity: number = 1) => {
+  setCell = (step: number, note: number, velocity: number) => {
     this.grid[step][note].velocity = velocity;
     this.grid[step][note].pitch = this.notes[note];
   };
@@ -107,4 +110,4 @@ class SequencerCell {
   }
 }
 
-export default StepSequencer;
+export { StepSequencer };
