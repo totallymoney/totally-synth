@@ -7,39 +7,50 @@ import RegularSlider  from "./RegularSlider"
 import { ButtonDisplay } from "./styled-components"
 
 const ButtonContainer = styled.div`
-  background-color: #666;
-  width: ${props=>props.type==='round' ? 100 : 160}px;
+  background-color: #7c909c;
   padding: 16px 8px;
+  border-radius: 2px;
+  margin: 1px;
+`
+
+const ButtonContainerRound = styled(ButtonContainer)`
+  width: 100px;
+  height: 100px;
+`
+
+const ButtonContainerRegular = styled(ButtonContainer)`
+  width: 160px;
+  height: 70px;
 `
 
 const Heading = styled.p`
   padding: 0;
   margin: 0;
-  font-size: 12px;
+  font-size: 1.3em;
+  font-weight: 600;
 `
 
-export const Slider = ({name='control', type="round"}) => {
+export const SliderRound = ({name='control'}) => {
   const [value, setValue] = useState(0);
 
   return (
-    <ButtonContainer type={type}>
+    <ButtonContainerRound>
       <Heading>{name}</Heading>
-      { 
-        type==="round" && (
-          <>
-            <RoundSliderButton value={value} setValue={setValue}/>
-            <ButtonDisplay value={value} onChange={e => setValue(e.target.value)}/>
-          </>
-        )
-      }
-      { 
-        type==="regular" && (
-          <>
-            <RegularSlider value={value} setValue={setValue}/>
-            <ButtonDisplay value={value} onChange={e => setValue(e.target.value)}/>
-          </>
-        )
-      }
-    </ButtonContainer>
+      <RoundSliderButton value={value} setValue={setValue}/>
+      <ButtonDisplay value={value} onChange={e => setValue(e.target.value)}/>
+    </ButtonContainerRound>
+  )
+}
+
+
+export const SliderRegular = ({name='control'}) => {
+  const [value, setValue] = useState(0);
+
+  return (
+    <ButtonContainerRegular>
+      <Heading>{name}</Heading>
+      <RegularSlider value={value} setValue={setValue}/>
+      <ButtonDisplay value={value} onChange={e => setValue(e.target.value)}/>
+    </ButtonContainerRegular>
   )
 }
