@@ -1,32 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Synth } from "tone";
 import { StepSequencer } from "./core/step-sequencer";
-import { Transport } from "tone"
+import { Transport } from "tone";
 
 function StepSequencerUI() {
   const sequencerRef = useRef(null);
+  const sequenceRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const initialise = () => {
-    const sequencer = new StepSequencer(16);
-    const synth = new Synth().toMaster();
-    // test sound
-    synth.triggerAttackRelease("C4", "8n");
-    sequencer.connect(synth);
+    const sequencer = StepSequencer.Default();
+    sequenceRef.current = sequencer.sequence();
     sequencerRef.current = sequencer;
-
-    // example sequence
-    sequencerRef.current.setCell(0, 0, 1);
-    sequencerRef.current.setCell(1, 1, 1);
-    sequencerRef.current.setCell(2, 2, 1);
-    sequencerRef.current.setCell(3, 3, 1);
-    sequencerRef.current.setCell(4, 4, 1);
-    sequencerRef.current.setCell(5, 5, 1);
-    sequencerRef.current.setCell(6, 6, 1);
-    sequencerRef.current.setCell(7, 7, 1);
-    sequencerRef.current.setCell(8, 8, 1);
-    sequencerRef.current.setCell(9, 9, 1);
-    sequencerRef.current.setCell(10, 10, 1);
-    sequencerRef.current.setCell(11, 11, 1);
   };
 
   const toggleStart = () => {
@@ -39,8 +22,11 @@ function StepSequencerUI() {
   useEffect(() => {
     if (isPlaying) {
       console.log("playing sequence");
-      sequencerRef.current.sequence().start(0);
+      sequenceRef.current.start(0);
       Transport.start();
+    } else {
+      Transport.stop();
+      if (sequenceRef.current) sequenceRef.current.stop(0);
     }
   }, [isPlaying]);
 

@@ -11,6 +11,7 @@ const defaultModelOptions = {
 function HandTrack({
   onPositionChange = () => {},
   modelOptions = defaultModelOptions,
+  shouldRenderPredictions = false,
 }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -26,12 +27,13 @@ function HandTrack({
   function runDetection() {
     model.current.detect(videoRef.current).then((predictions) => {
       onPositionChange(predictions[0] && predictions[0].bbox);
-      model.current.renderPredictions(
-        predictions,
-        canvasRef.current,
-        contextRef.current,
-        videoRef.current
-      );
+      shouldRenderPredictions &&
+        model.current.renderPredictions(
+          predictions,
+          canvasRef.current,
+          contextRef.current,
+          videoRef.current
+        );
       if (isVideo) {
         requestAnimationFrame(runDetection);
       }
@@ -67,8 +69,14 @@ function HandTrack({
 
   return (
     <div>
-      <video ref={videoRef} style={{ display: "none" }} />
-      <canvas ref={canvasRef} />
+      <video
+        ref={videoRef}
+        style={{ display: shouldRenderPredictions ? "none" : "block" }}
+      />
+      <canvas
+        style={{ display: shouldRenderPredictions ? "block" : "none" }}
+        ref={canvasRef}
+      />
       <p>{statusText}</p>
     </div>
   );
