@@ -13,8 +13,8 @@ class StepSequencer {
         this.loopInterval = steps+"n"; //sets the loop interval to be X whole notes.
     }
 
-    setCell = (step:number, note:number, value:number) =>{
-        this.grid.setCell(step,note,value);
+    setCell = (step:number, note:number, velocity:number) =>{
+        this.grid.setCell(step,note, velocity);
     }
 
     connect = (synth:Synth) => {
@@ -27,7 +27,7 @@ class StepSequencer {
             stepNotes.forEach(note => {
                 if(note.velocity > 0){
                     if(this.synth instanceof Synth)
-                        this.synth.triggerAttackRelease(note.pitch,"1n");
+                        this.synth.triggerAttackRelease(note.pitch,"1n",_time, note.velocity);
                 }
             });
         }
