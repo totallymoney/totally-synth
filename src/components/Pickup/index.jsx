@@ -38,10 +38,14 @@ const TableControl = styled.div`
 const emptyGrid = Array.apply(null, Array(16));
 const emptyNotes = Array.apply(null, Array(12));
 
+<<<<<<< HEAD
 const color = d3
   .scaleSequential()
   .domain([13, 1])
   .interpolator(d3.interpolateViridis);
+=======
+const color = d3.scaleSequential().domain([10,1]).interpolator(d3.interpolateSinebow);
+>>>>>>> toggle reverb
 
 /**
  *

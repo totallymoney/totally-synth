@@ -28,9 +28,7 @@ const Heading = styled.p`
   font-weight: 600;
 `
 
-export const SliderRound = ({name='control'}) => {
-  const [value, setValue] = useState(0);
-
+export const SliderRound = ({name='control', value, setValue}) => {
   return (
     <ButtonContainerRound>
       <Heading>{name}</Heading>
@@ -41,9 +39,7 @@ export const SliderRound = ({name='control'}) => {
 }
 
 
-export const SliderRegular = ({name='control'}) => {
-  const [value, setValue] = useState(0);
-
+export const SliderRegular = ({name='control', value, setValue}) => {
   return (
     <ButtonContainerRegular>
       <Heading>{name}</Heading>

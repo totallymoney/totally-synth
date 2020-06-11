@@ -3,10 +3,13 @@ import { Reverb, Delay } from "tone";
 import { StepSequencer } from "./core/step-sequencer";
 import { Transport } from "tone";
 import Pickup from "./components/Pickup";
+import Button from "./components/ControlButtons/RegularButton";
+import { SliderRegular } from "./components/ControlButtons";
 
 function StepSequencerUI() {
   const sequencerRef = useRef(null);
   const sequenceRef = useRef(null);
+  const reverbRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [ currentStep, setCurrentStep ] = useState(-1);
   const initialise = () => {
@@ -15,10 +18,16 @@ function StepSequencerUI() {
     sequencer.registerOnTickFunction(handleOnTick)
     sequencerRef.current = sequencer;
     const synth = sequencer.connected();
-    const reverb = new Reverb({ decay: 1, wet: 0.9 }).toMaster();
+    const reverb = new Reverb({ decay: 5, wet: 0.5 }).toMaster();
     synth.connect(reverb);
+    reverbRef.current = reverb;
   };
 
+  const setReverbWetness = (wet) => {
+    console.log("this happened ", wet)
+    if(!!reverbRef.current)
+      reverbRef.current.wet = wet;
+  }
 
   const handleCellClick = (step, note, velocity) => {
     if (!isPlaying) {
@@ -51,7 +60,12 @@ function StepSequencerUI() {
 
   return (
     <div>
+<<<<<<< HEAD
       <Pickup setCell={handleCellClick} currentStep={currentStep} isPlaying={{setIsPlaying: setIsPlaying, isPlaying: isPlaying}}/>
+=======
+      <Pickup setCell={handleCellClick} currentStep={currentStep} />
+      <SliderRegular name="Reverb" value={reverbRef.current?.wet} setValue={setReverbWetness}/>
+>>>>>>> toggle reverb
     </div>
   );
 }

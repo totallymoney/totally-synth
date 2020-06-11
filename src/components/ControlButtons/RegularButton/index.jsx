@@ -32,7 +32,11 @@ const Button = ({children="EFX", size, isPlaying}) => {
   }
   return (
   <Container>
+<<<<<<< HEAD
     <ButtonWrapper size={size} isActive={isActive} onClick={()=>setActive()} >{children}</ButtonWrapper>
+=======
+    <ButtonWrapper size={size} isActive={isActive}>{children}</ButtonWrapper>
+>>>>>>> toggle reverb
   </Container>
 )};
 
