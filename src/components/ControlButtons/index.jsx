@@ -15,12 +15,10 @@ const ButtonContainer = styled.div`
 
 const ButtonContainerRound = styled(ButtonContainer)`
   width: 100px;
-  height: 100px;
 `
 
 const ButtonContainerRegular = styled(ButtonContainer)`
   width: 160px;
-  height: 70px;
 `
 
 const Heading = styled.p`
