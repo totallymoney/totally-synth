@@ -1027,7 +1027,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.5.1", "@babel/runtime@^7.7.4":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.5.1", "@babel/runtime@^7.7.4":
   version "7.10.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.2.tgz#d103f21f2602497d38348a32e008637d506db839"
   integrity sha512-6sF3uQw2ivImfVIl62RZ7MXhO2tap69WeWK57vAaimT6AZbE4FbqjdEJIN1UqoD6wI6B+1n9UiagafH1sxjOtg==
@@ -2370,6 +2370,14 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+automation-events@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/automation-events/-/automation-events-2.0.11.tgz#5e666fb886faac660e3b3f655fa4aed79c89bbc2"
+  integrity sha512-SGdMIK6PW6EvtHPXdIVEq6+86FhBHG/HJHo8Gz0V29lpJN33wpC5TdkxvwJbgfavPGkCja/o73CyeVyRZLN4DA==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    tslib "^2.0.0"
 
 autoprefixer@^9.6.1:
   version "9.7.4"
@@ -9880,6 +9888,15 @@ stack-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
 
+standardized-audio-context@^24.1.5:
+  version "24.1.18"
+  resolved "https://registry.yarnpkg.com/standardized-audio-context/-/standardized-audio-context-24.1.18.tgz#10ae3e4fb8fec81b897432971f8a29e6dd2607cf"
+  integrity sha512-hMA/LujI4mMdTA2e3ufoRAzDhwmgDWXV4+0CiyuX10uIh+H2ScRqkT6ktL+QfjfnEn7TuBbwNG3qJnHBQ5OiIw==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    automation-events "^2.0.11"
+    tslib "^2.0.0"
+
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -10346,6 +10363,14 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
+tone@^14.7.7:
+  version "14.7.7"
+  resolved "https://registry.yarnpkg.com/tone/-/tone-14.7.7.tgz#c4793419fb4c2b6e6528b27b6d8f5b4806caacb3"
+  integrity sha512-KN+qXIgrFR3JJP3tN2wq1W0nx7e7rEY6+m05dksSQHUIlBtdsQYl38Y10txZHUV5M60Z1Nnx6GDbtNYXC0kx/Q==
+  dependencies:
+    standardized-audio-context "^24.1.5"
+    tslib "^1.10.0"
+
 tough-cookie@^2.3.3, tough-cookie@^2.3.4, tough-cookie@^2.5.0, tough-cookie@~2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
@@ -10370,6 +10395,11 @@ tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
+
+tslib@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
+  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
 tsutils@^3.17.1:
   version "3.17.1"
