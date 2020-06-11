@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import * as d3 from "d3";
 
 import { SliderRound, SliderRegular } from "../ControlButtons/";
 import PkupButton from "../PkupButton";
@@ -25,6 +26,8 @@ const TableControl = styled.div`
 const emptyGrid = Array.apply(null, Array(16));
 const emptyNotes = Array.apply(null, Array(12));
 
+const color = d3.scaleSequential().domain([1,10]).interpolator(d3.interpolateViridis);
+
 function Pickup({ setCell }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
   const toggleIsActive = (x, y) => {
@@ -39,8 +42,8 @@ function Pickup({ setCell }) {
         <TableLine>
           {emptyGrid.map((_, stepIndex) => (
             <PkupButton
-              color="cyan"
-              size="50"
+              color={color(noteIndex)}
+              size="40"
               isActive={grid[stepIndex][noteIndex]}
               step={stepIndex}
               note={noteIndex}
@@ -54,7 +57,6 @@ function Pickup({ setCell }) {
         <SliderRegular name="Volume" />
         <SliderRound name="Gain" />
         <Button />
-        <Button size={100}>REVERB</Button>
       </TableControl>
     </Table>
   );
