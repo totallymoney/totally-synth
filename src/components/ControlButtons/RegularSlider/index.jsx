@@ -5,9 +5,9 @@ import styled from 'styled-components'
 const SliderInput = styled.input`
   -webkit-appearance:none;
   width:100px;
-  height:15px;
-  margin:10px 15px;
-  background: linear-gradient(to right, #111 0%, #333 100%);
+  height:17px;
+  margin:10px 17px;
+  background: linear-gradient(to right, #000 0%, #000 100%);
   background-size:100px 5px;
   background-position:center;
   background-repeat:no-repeat;
@@ -16,9 +16,9 @@ const SliderInput = styled.input`
 
   &::-webkit-slider-thumb {
     -webkit-appearance:none;
-    width:15px;
-    height:15px;
-    background:#000;
+    width:17px;
+    height:17px;
+    background:#222;
     position:relative;
     border-radius: 50%;
     z-index:3;
@@ -40,15 +40,17 @@ const SliderInput = styled.input`
 
 
 const Slider = ({value, setValue}) => (
-    <SliderInput 
-      type="range" 
-      min="1" 
-      max="100" 
-      value={value} 
-      class="slider" 
-      id="myRange" 
-      onChange={(e)=> setValue(e.target.value)}
-    />
+    <div>
+      <SliderInput 
+        type="range" 
+        min="1" 
+        max="100" 
+        value={value} 
+        class="slider" 
+        id="myRange" 
+        onChange={(e)=> setValue(e.target.value)}
+      />
+    </div>
 );
 
 export default Slider
