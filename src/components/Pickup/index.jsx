@@ -10,17 +10,27 @@ const Table = styled.div`
   margin: 0 auto;
   background-color: #333;
   width: 864px;
-  height: 648px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const TableLine = styled.div`
   width: 100%;
 `;
 
+const TablePanel = styled.div`
+  padding-top: 2.4em;
+  padding-bottom: 2.4em;
+`
+
 const TableControl = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  align-self: flex-end;
+  border: 3px solid white;
+  padding: 0.4rem;
 `;
 
 const emptyGrid = Array.apply(null, Array(16));
@@ -47,21 +57,22 @@ function Pickup({ setCell, currentStep }) {
 
   return (
     <Table>
-      {emptyNotes.map((_, noteIndex) => (
-        <TableLine>
-          {emptyGrid.map((_, stepIndex) => (
-            <PkupButton
-              color={getColor(noteIndex, stepIndex)}
-              size="40"
-              isActive={grid[stepIndex][noteIndex]}
-              step={stepIndex}
-              note={noteIndex}
-              handleClick={toggleIsActive}
-            />
-          ))}
-        </TableLine>
-      ))}
-
+      <TablePanel>
+        {emptyNotes.map((_, noteIndex) => (
+          <TableLine>
+            {emptyGrid.map((_, stepIndex) => (
+              <PkupButton
+                color={getColor(noteIndex, stepIndex)}
+                size="35"
+                isActive={grid[stepIndex][noteIndex]}
+                step={stepIndex}
+                note={noteIndex}
+                handleClick={toggleIsActive}
+              />
+            ))}
+          </TableLine>
+        ))}
+      </TablePanel>
       <TableControl>
         <SliderRegular name="Volume" />
         <SliderRound name="Gain" />
