@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 
-import { RoundButton, RoundButtonExtended } from '../RoundButton'
+import { Slider } from '../ControlButtons/'
 import PkupButton from '../PkupButton';
-import RegularSlider from '../RegularSlider';
+import { SliderContainer } from '../ControlButtons/RegularSlider';
 
 const Table = styled.div`
   margin: 0 auto;
@@ -32,8 +32,8 @@ function Pickup() {
         <PkupButton color="cyan" size="50"/>
       </TableLine>
       <TableControl>
-        <RoundButtonExtended />
-        <RegularSlider />
+        <Slider type="regular" name="Volume"/>
+        <Slider type="round" name="Gain"/>
       </TableControl>
     </Table>
   );
