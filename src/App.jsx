@@ -7,13 +7,13 @@ import Pickup from "./components/Pickup";
 function App() {
   return (
     <div className="App">
-      <HandTrack
+      {/* <HandTrack
         onPositionChange={(position) =>
           console.log("Detected position: ", position)
         }
       />
-      <header className="App-header"></header>
-      {/* <Pickup /> */}
+      <header className="App-header"></header> */}
+      <Pickup />
     </div>
   );
 }
