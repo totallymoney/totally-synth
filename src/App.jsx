@@ -13,6 +13,8 @@ function App() {
     console.log("Detected position: ", position);
     setPosition(position);
   };
+  const frequencyFromPosition = position && position[2] > 0 ? position[2] : 0;
+
   return (
     <div className="App">
       <button onClick={() => setIsThereminEnabled(!isThereminEnabled)}>
@@ -24,10 +26,7 @@ function App() {
           shouldRenderPredictions
         />
       )}
-      <Synth
-        isPlaying={isThereminEnabled}
-        frequency={position && position[1] > 0 ? position[1] : 0}
-      />
+      <Synth isPlaying={isThereminEnabled} frequency={frequencyFromPosition} />
       <StepSequencer />
       <Pickup />
     </div>

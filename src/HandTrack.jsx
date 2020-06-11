@@ -3,7 +3,7 @@ import * as handTrack from "handtrackjs";
 
 const defaultModelOptions = {
   flipHorizontal: true,
-  maxNumBoxes: 2,
+  maxNumBoxes: 1,
   iouThreshold: 0.5,
   scoreThreshold: 0.6,
 };
@@ -57,7 +57,7 @@ function HandTrack({
     }
   }, [isVideo]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     startVideo(videoRef.current);
   }, []);
 
@@ -65,7 +65,7 @@ function HandTrack({
     handTrack.load(modelOptions).then((lmodel) => {
       model.current = lmodel;
     });
-  });
+  }, []);
 
   return (
     <div>
