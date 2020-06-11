@@ -5,10 +5,10 @@ import styled from 'styled-components'
 const SliderInput = styled.input`
   -webkit-appearance:none;
   width:100px;
-  height:5px;
+  height:15px;
   margin:10px 15px;
   background: linear-gradient(to right, #111 0%, #333 100%);
-  background-size:150px 10px;
+  background-size:100px 5px;
   background-position:center;
   background-repeat:no-repeat;
   overflow:hidden;
@@ -17,9 +17,10 @@ const SliderInput = styled.input`
   &::-webkit-slider-thumb {
     -webkit-appearance:none;
     width:15px;
-    height:20px;
+    height:15px;
     background:#000;
     position:relative;
+    border-radius: 50%;
     z-index:3;
     box-shadow:0 0 5px 0 rgba(0,0,0,0.3);
   }
@@ -27,7 +28,7 @@ const SliderInput = styled.input`
   &::-webkit-slider-thumb:after{
     content:" ";
     width:100px;
-    height:5px;
+    height:10px;
     position:absolute;
     z-index:1;
     right:20px;
