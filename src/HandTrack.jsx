@@ -25,19 +25,19 @@ function HandTrack({
   }, []);
 
   function runDetection() {
-    model.current.detect(videoRef.current).then((predictions) => {
-      onPositionChange(predictions[0] && predictions[0].bbox);
-      shouldRenderPredictions &&
-        model.current.renderPredictions(
-          predictions,
-          canvasRef.current,
-          contextRef.current,
-          videoRef.current
-        );
-      if (isVideo) {
+    if (videoRef.current) {
+      model.current.detect(videoRef.current).then((predictions) => {
+        onPositionChange(predictions[0] && predictions[0].bbox);
+        shouldRenderPredictions &&
+          model.current.renderPredictions(
+            predictions,
+            canvasRef.current,
+            contextRef.current,
+            videoRef.current
+          );
         requestAnimationFrame(runDetection);
-      }
-    });
+      });
+    }
   }
 
   function startVideo(videoRef) {
