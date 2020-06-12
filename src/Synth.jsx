@@ -16,7 +16,11 @@ function Synth({ frequency, velocity, isPlaying }) {
 
   useEffect(() => {
     if (oscRef.current) {
-      oscRef.current.frequency.value = frequency;
+      oscRef.current.frequency.setTargetAtTime(
+        frequency,
+        oscRef.current.context.currentTime,
+        0.01
+      );
     }
   }, [frequency]);
 
