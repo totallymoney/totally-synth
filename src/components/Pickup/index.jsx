@@ -87,9 +87,10 @@ function Pickup({
     <Table>
       <TablePanel>
         {emptyNotes.map((_, noteIndex) => (
-          <TableLine>
+          <TableLine key={`line_${noteIndex}`}>
             {emptyGrid.map((_, stepIndex) => (
               <PkupButton
+                key={`BTN_${stepIndex}`}
                 color={getColor(noteIndex, stepIndex)}
                 size="35"
                 isActive={grid[stepIndex][noteIndex]}
