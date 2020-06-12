@@ -9,7 +9,7 @@ import Synth from "./Synth";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2px;
+  margin: 1px;
 `;
 
 const Button = styled.button`
@@ -21,6 +21,8 @@ const Button = styled.button`
   cursor: pointer;
   width: ${(props) => (props.size ? `${props.size}px` : "auto")};
 
+  margin-bottom: 2px;
+  
   font-size: 1.3em;
   font-family: "Futura";
   font-weight: 600;
