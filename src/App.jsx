@@ -31,12 +31,6 @@ function App() {
 
   return (
     <div className="App">
-      {isThereminEnabled && (
-        <HandTrack
-          onPositionChange={handleHandPositionChange}
-          shouldRenderPredictions
-        />
-      )}
       <Synth isPlaying={isThereminEnabled} frequency={frequencyFromPosition} />
       <StepSequencer>
         <Button
@@ -45,6 +39,12 @@ function App() {
         >
           {isThereminEnabled ? "disable" : "enable"} theremin
         </Button>
+        {isThereminEnabled && (
+          <HandTrack
+            onPositionChange={handleHandPositionChange}
+            shouldRenderPredictions
+          />
+        )}
       </StepSequencer>
     </div>
   );
