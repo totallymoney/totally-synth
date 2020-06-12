@@ -56,22 +56,12 @@ function App() {
           >
             {isThereminEnabled ? "Disable" : "Enable"} Theremin
           </Button>
-          {isThereminEnabled && (
-            <Button
-              isActive={shouldRenderPredictions}
-              onClick={() =>
-                setShouldRenderPredictions(!shouldRenderPredictions)
-              }
-            >
-              {!shouldRenderPredictions ? "Show" : "Hide"} hand tracking
-            </Button>
-          )}
         </Container>
         <Container>
           {isThereminEnabled && (
             <HandTrack
               onPositionChange={handleHandPositionChange}
-              shouldRenderPredictions={shouldRenderPredictions}
+              shouldRenderPredictions
             />
           )}
         </Container>
