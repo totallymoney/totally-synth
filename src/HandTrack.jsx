@@ -68,12 +68,18 @@ function HandTrack({
   }, []);
 
   return (
-    <div>
+    <div style={{ padding: "10px", backgroundColor: "#7c909c" }}>
       <video
         ref={videoRef}
-        style={{ display: shouldRenderPredictions ? "none" : "block" }}
+        width="160"
+        height="120"
+        style={{
+          display: shouldRenderPredictions ? "none" : "block",
+        }}
       />
       <canvas
+        width="160"
+        height="120"
         style={{ display: shouldRenderPredictions ? "block" : "none" }}
         ref={canvasRef}
       />

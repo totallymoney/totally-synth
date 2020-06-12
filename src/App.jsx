@@ -28,17 +28,17 @@ function App() {
     console.log("Detected position: ", position);
     setPosition(position);
   };
-  const frequencyFromPosition = position && position[2] > 0 ? position[2] : 0;
+  const frequencyFromPosition =
+    position && position[2] > 0 ? position[2] * 7 : 0;
 
   return (
     <div className="App">
       {isThereminEnabled && (
-        <HandTrack
-          onPositionChange={handleHandPositionChange}
-          shouldRenderPredictions
+        <Synth
+          isPlaying={isThereminEnabled}
+          frequency={frequencyFromPosition}
         />
       )}
-      <Synth isPlaying={isThereminEnabled} frequency={frequencyFromPosition} />
       <StepSequencer>
         <Button
           isActive={isThereminEnabled}
@@ -46,6 +46,12 @@ function App() {
         >
           {isThereminEnabled ? "disable" : "enable"} theremin
         </Button>
+        {isThereminEnabled && (
+          <HandTrack
+            onPositionChange={handleHandPositionChange}
+            shouldRenderPredictions
+          />
+        )}
       </StepSequencer>
     </div>
   );
