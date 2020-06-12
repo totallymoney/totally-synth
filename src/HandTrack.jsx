@@ -59,13 +59,13 @@ function HandTrack({
 
   useEffect(() => {
     startVideo(videoRef.current);
-  }, []);
+  }, [videoRef.current]);
 
   useEffect(() => {
     handTrack.load(modelOptions).then((lmodel) => {
       model.current = lmodel;
     });
-  }, []);
+  }, [model.current]);
 
   return (
     <div style={{ padding: "10px", backgroundColor: "#7c909c" }}>

@@ -1,5 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
+
 .App {
   text-align: center;
+}
+
+h1 {
+  font-family: "Bungee Inline";
+  color: #20a486;
+  font-size: 52px;
 }
 
 .App-logo {

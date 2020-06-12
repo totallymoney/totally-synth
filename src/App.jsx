@@ -7,7 +7,9 @@ import Synth from "./Synth";
 // import Button from "./components/ControlButtons/RegularButton"
 
 const Container = styled.div`
-  margin: 1px;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
 `;
 
 const Button = styled.button`
@@ -28,6 +30,7 @@ const Button = styled.button`
 
 function App() {
   const [isThereminEnabled, setIsThereminEnabled] = useState(false);
+  const [shouldRenderPredictions, setShouldRenderPredictions] = useState(false);
   const [position, setPosition] = useState();
   const handleHandPositionChange = (position) => {
     console.log("Detected position: ", position);
@@ -38,6 +41,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>TotallySynth</h1>
       {isThereminEnabled && (
         <Synth
           isPlaying={isThereminEnabled}
@@ -52,12 +56,22 @@ function App() {
           >
             {isThereminEnabled ? "Disable" : "Enable"} Theremin
           </Button>
+          {isThereminEnabled && (
+            <Button
+              isActive={shouldRenderPredictions}
+              onClick={() =>
+                setShouldRenderPredictions(!shouldRenderPredictions)
+              }
+            >
+              {!shouldRenderPredictions ? "Show" : "Hide"} hand tracking
+            </Button>
+          )}
         </Container>
         <Container>
           {isThereminEnabled && (
             <HandTrack
               onPositionChange={handleHandPositionChange}
-              shouldRenderPredictions
+              shouldRenderPredictions={shouldRenderPredictions}
             />
           )}
         </Container>
