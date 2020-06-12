@@ -47,7 +47,7 @@ const Slider = ({value, setValue}) => (
         max="1" 
         step="0.05"
         value={value} 
-        class="slider" 
+        className="slider" 
         id="myRange" 
         onChange={(e)=> setValue(e.target.value)}
       />

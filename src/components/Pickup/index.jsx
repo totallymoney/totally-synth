@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import { SliderRound, SliderRegular } from "../ControlButtons/";
 import PkupButton from "../PkupButton";
 import Button from "../ControlButtons/RegularButton";
+import DropDown from "../ControlButtons/DropDown";
 import SoundViz from "../SoundViz";
 
 const Table = styled.div`
@@ -67,7 +68,9 @@ function Pickup({
   currentStep,
   isPlaying,
   setReverbWetness,
+  handleChangeScale,
   children,
+  scaleKeys
 }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
 
@@ -85,9 +88,10 @@ function Pickup({
     <Table>
       <TablePanel>
         {emptyNotes.map((_, noteIndex) => (
-          <TableLine>
+          <TableLine key={`line_${noteIndex}`}>
             {emptyGrid.map((_, stepIndex) => (
               <PkupButton
+                key={`BTN_${stepIndex}`}
                 color={getColor(noteIndex, stepIndex)}
                 size="35"
                 isActive={grid[stepIndex][noteIndex]}
@@ -102,6 +106,7 @@ function Pickup({
       <TableControl>
         <SliderRegular name="Volume" />
         <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} />
+        <DropDown list={scaleKeys} getDropdownValue={handleChangeScale}/>
         {/* <Button isActive={isPlaying}>Play</Button> */}
         {children}
       </TableControl>
