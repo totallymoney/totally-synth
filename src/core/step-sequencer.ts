@@ -48,19 +48,19 @@ class StepSequencer {
 
   private onTickEvents = [this.onTick];
 
-  notes : string[] = [
-    "A2",
-    "C3",
-    "A3",
-    "G3",
-    "E4",
-    "D4",
-    "C5",
-    "A5",
-    "G5",
-    "E6",
-    "D6",
+  notes: string[] = [
     "C7",
+    "D6",
+    "E6",
+    "G5",
+    "A5",
+    "C5",
+    "D4",
+    "E4",
+    "G3",
+    "A3",
+    "C3",
+    "A2",
   ];
 
   sequence = () => {
@@ -76,9 +76,9 @@ class StepSequencer {
     return new Sequence(fun, steps, this.loopInterval);
   };
 
-  setNotes = (notes:string[]) => {
+  setNotes = (notes: string[]) => {
     this.notes = notes;
-  }
+  };
 
   //Output a default step sequencer with a synth
   static Default = () => {
@@ -102,8 +102,7 @@ class SequencerGrid {
     this.grid = [];
     for (let s = 0; s < this.steps; s++) {
       const cells = [];
-      for (let c = 0; c < 12; c++)
-        cells.push(new SequencerCell(c, 0));
+      for (let c = 0; c < 12; c++) cells.push(new SequencerCell(c, 0));
       this.grid.push(cells);
     }
   };
