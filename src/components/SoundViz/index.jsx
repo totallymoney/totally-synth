@@ -32,9 +32,10 @@ const Sound = () => {
     const h = 300;
     const w = chartBox.current.clientWidth-10;
     
-    const colorScale = d3.scaleLinear()
-      .domain([0, 150])
-      .range(["#2c7bb6","#d7191c"]);
+    const colorScale =  d3
+    .scaleSequential()
+    .domain([150, 1])
+    .interpolator(d3.interpolateViridis);
     
     const circleX = d3.scaleLinear()
       .domain([0, frequencyData.length])
