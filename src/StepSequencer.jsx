@@ -38,6 +38,11 @@ function StepSequencerUI({ children }) {
     setCurrentStep(step);
   };
 
+  const handleChangeScale = (scale) => {
+    if(sequencerRef.current)
+      sequencerRef.current.setNotes(scale);
+  };
+
   const toggleStart = () => {
     if (sequencerRef.current == null) {
       initialise();
@@ -63,6 +68,7 @@ function StepSequencerUI({ children }) {
         currentStep={currentStep}
         isPlaying={{ setIsPlaying: setIsPlaying, isPlaying: isPlaying }}
         setReverbWetness={setReverbWetness}
+        handleChangeScale={handleChangeScale}
       >
       {children}
       </Pickup>
