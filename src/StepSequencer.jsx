@@ -38,6 +38,11 @@ function StepSequencerUI({ children }) {
     setCurrentStep(step);
   };
 
+  const handleVolume = (value) => {
+    if(sequencerRef.current)
+      sequencerRef.current.connected().volume.value = value;
+  }
+
   const scaleKeys = ["pretty", "dark", "mellow"];
   const scales = {
     pretty: [
@@ -55,16 +60,16 @@ function StepSequencerUI({ children }) {
       "A2",
     ],
     dark: [
-      "C6",
-      "F#5",
+      "A#6",
+      "G5",
       "D#5",
       "C5",
-      "A4",
-      "F#4",
+      "A#4",
+      "G4",
       "D#4",
       "C4",
-      "A3",
-      "F#3",
+      "A#3",
+      "G3",
       "D#3",
       "C3",
     ],
@@ -115,6 +120,7 @@ function StepSequencerUI({ children }) {
         setReverbWetness={setReverbWetness}
         handleChangeScale={handleChangeScale}
         scaleKeys={scaleKeys}
+        handleVolume={handleVolume}
       >
         {children}
       </Pickup>

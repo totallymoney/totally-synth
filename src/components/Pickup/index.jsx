@@ -70,7 +70,8 @@ function Pickup({
   setReverbWetness,
   handleChangeScale,
   children,
-  scaleKeys
+  scaleKeys,
+  handleVolume
 }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
 
@@ -104,8 +105,8 @@ function Pickup({
         ))}
       </TablePanel>
       <TableControl>
-        <SliderRegular name="Volume" />
-        <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} />
+        <SliderRound name="Volume" setValue={handleVolume} min={-48} max={-1} step={1}/>
+        <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} min={0} max={1} step={0.05}/>
         <DropDown list={scaleKeys} getDropdownValue={handleChangeScale}/>
         {/* <Button isActive={isPlaying}>Play</Button> */}
         {children}
