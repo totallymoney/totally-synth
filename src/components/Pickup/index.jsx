@@ -70,6 +70,7 @@ function Pickup({
   setReverbWetness,
   handleChangeScale,
   children,
+  scaleKeys
 }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
 
@@ -105,7 +106,7 @@ function Pickup({
       <TableControl>
         <SliderRegular name="Volume" />
         <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} />
-        <DropDown list={['one', 'two']} getDropdownValue={handleChangeScale}/>
+        <DropDown list={scaleKeys} getDropdownValue={handleChangeScale}/>
         {/* <Button isActive={isPlaying}>Play</Button> */}
         {children}
       </TableControl>

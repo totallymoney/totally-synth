@@ -38,9 +38,54 @@ function StepSequencerUI({ children }) {
     setCurrentStep(step);
   };
 
+  const scaleKeys = ["pretty", "dark", "mellow"];
+  const scales = {
+    pretty: [
+      "C7",
+      "D6",
+      "E6",
+      "G5",
+      "A5",
+      "C5",
+      "D4",
+      "E4",
+      "G3",
+      "A3",
+      "C3",
+      "A2",
+    ],
+    dark: [
+      "C6",
+      "F#5",
+      "D#5",
+      "C5",
+      "A4",
+      "F#4",
+      "D#4",
+      "C4",
+      "A3",
+      "F#3",
+      "D#3",
+      "C3",
+    ],
+    mellow: [
+      "F#7",
+      "D6",
+      "B#6",
+      "G5",
+      "F#5",
+      "D5",
+      "B4",
+      "G4",
+      "F#3",
+      "D3",
+      "B3",
+      "G3",
+    ],
+  };
+
   const handleChangeScale = (scale) => {
-    if(sequencerRef.current)
-      sequencerRef.current.setNotes(scale);
+    if (sequencerRef.current) sequencerRef.current.setNotes(scales[scale]);
   };
 
   const toggleStart = () => {
@@ -69,8 +114,9 @@ function StepSequencerUI({ children }) {
         isPlaying={{ setIsPlaying: setIsPlaying, isPlaying: isPlaying }}
         setReverbWetness={setReverbWetness}
         handleChangeScale={handleChangeScale}
+        scaleKeys={scaleKeys}
       >
-      {children}
+        {children}
       </Pickup>
     </div>
   );
