@@ -40,11 +40,19 @@ export const SliderRound = ({name='control', value, setValue}) => {
 
 
 export const SliderRegular = ({name='control', value, setValue}) => {
+
+  const [ sliderValue, setSliderValue ] = useState(value);
+
+  const handleSliderChange = (value) => {
+    setSliderValue(value);
+    setValue(value);
+  }
+
   return (
     <ButtonContainerRegular>
       <Heading>{name}</Heading>
-      <RegularSlider value={value} setValue={setValue}/>
-      <ButtonDisplay value={value} onChange={e => setValue(e.target.value)}/>
+      <RegularSlider value={sliderValue} setValue={handleSliderChange}/>
+      <ButtonDisplay value={sliderValue} onChange={e => handleSliderChange(e.target.value)}/>
     </ButtonContainerRegular>
   )
 }

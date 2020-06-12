@@ -18,13 +18,11 @@ function StepSequencerUI() {
     sequencer.registerOnTickFunction(handleOnTick)
     sequencerRef.current = sequencer;
     const synth = sequencer.connected();
-    const reverb = new Reverb({ decay: 5, wet: 0.5 }).toMaster();
-    synth.connect(reverb);
-    reverbRef.current = reverb;
+    reverbRef.current = new Reverb({ decay: 5, wet: 0.5 }).toMaster();
+    synth.connect(reverbRef.current);
   };
 
   const setReverbWetness = (wet) => {
-    console.log("this happened ", wet)
     if(!!reverbRef.current)
       reverbRef.current.wet = wet;
   }
@@ -60,12 +58,8 @@ function StepSequencerUI() {
 
   return (
     <div>
-<<<<<<< HEAD
       <Pickup setCell={handleCellClick} currentStep={currentStep} isPlaying={{setIsPlaying: setIsPlaying, isPlaying: isPlaying}}/>
-=======
-      <Pickup setCell={handleCellClick} currentStep={currentStep} />
-      <SliderRegular name="Reverb" value={reverbRef.current?.wet} setValue={setReverbWetness}/>
->>>>>>> toggle reverb
+      <SliderRegular name="Reverb" value={0} setValue={setReverbWetness} >
     </div>
   );
 }
