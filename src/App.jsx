@@ -31,7 +31,12 @@ function App() {
 
   return (
     <div className="App">
-      <Synth isPlaying={isThereminEnabled} frequency={frequencyFromPosition} />
+      {isThereminEnabled && (
+        <Synth
+          isPlaying={isThereminEnabled}
+          frequency={frequencyFromPosition}
+        />
+      )}
       <StepSequencer>
         <Button
           isActive={isThereminEnabled}
