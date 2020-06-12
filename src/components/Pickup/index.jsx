@@ -5,11 +5,12 @@ import * as d3 from "d3";
 import { SliderRound, SliderRegular } from "../ControlButtons/";
 import PkupButton from "../PkupButton";
 import Button from "../ControlButtons/RegularButton";
-import SoundViz from "../SoundViz"
+import SoundViz from "../SoundViz";
 
 const Table = styled.div`
   margin: 0 auto;
-  background-color: #333;
+  padding: 25px;
+  background-color: #222629;
   width: 864px;
   display: flex;
   flex-direction: column;
@@ -23,7 +24,7 @@ const TableLine = styled.div`
 const TablePanel = styled.div`
   padding-top: 2.4em;
   padding-bottom: 2.4em;
-`
+`;
 
 const TableControl = styled.div`
   width: 100%;
@@ -37,19 +38,20 @@ const TableControl = styled.div`
 const emptyGrid = Array.apply(null, Array(16));
 const emptyNotes = Array.apply(null, Array(12));
 
-const color = d3.scaleSequential().domain([13,1]).interpolator(d3.interpolateViridis);
-
+const color = d3
+  .scaleSequential()
+  .domain([13, 1])
+  .interpolator(d3.interpolateViridis);
 
 /**
- * 
- * @param {*} setCell 
- * @param {*} currentStep 
- * @param {*} isPlaying 
+ *
+ * @param {*} setCell
+ * @param {*} currentStep
+ * @param {*} isPlaying
  */
 function Pickup({ setCell, currentStep, isPlaying }) {
-
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
-  
+
   const toggleIsActive = (x, y) => {
     const newGrid = grid.map((notes) => [...notes]);
     newGrid[x][y] = !newGrid[x][y];
@@ -57,11 +59,8 @@ function Pickup({ setCell, currentStep, isPlaying }) {
     setCell(x, y, newGrid[x][y]);
   };
 
-  const getColor = (noteIndex, stepIndex) =>{
-    if(stepIndex == currentStep)
-      return 'cyan';
-    return color(noteIndex)
-  }
+  const getColor = (noteIndex, stepIndex) =>
+    stepIndex === currentStep ? "cyan" : color(noteIndex);
 
   return (
     <Table>
@@ -86,7 +85,7 @@ function Pickup({ setCell, currentStep, isPlaying }) {
         <SliderRound name="Gain" />
         <Button isPlaying={isPlaying}>Play</Button>
       </TableControl>
-      <SoundViz/>
+      <SoundViz />
     </Table>
   );
 }
