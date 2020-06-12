@@ -4,12 +4,11 @@ import "./App.css";
 import StepSequencer from "./StepSequencer";
 import HandTrack from "./HandTrack";
 import Synth from "./Synth";
-// import Button from "./components/ControlButtons/RegularButton" 
+// import Button from "./components/ControlButtons/RegularButton"
 
 const Container = styled.div`
   margin: 1px;
-  
-`
+`;
 
 const Button = styled.button`
   background-color: #7c909c;
@@ -18,14 +17,14 @@ const Button = styled.button`
   outline: none;
   padding: 16px;
   cursor: pointer;
-  width: ${props=> props.size ? `${props.size}px` : 'auto'};
+  width: ${(props) => (props.size ? `${props.size}px` : "auto")};
 
   font-size: 1.3em;
-  font-family: 'Futura';
+  font-family: "Futura";
   font-weight: 600;
 
-  color: ${props=> props.isActive ? 'cyan' : '#000'};
-`
+  color: ${(props) => (props.isActive ? "cyan" : "#000")};
+`;
 
 function App() {
   const [isThereminEnabled, setIsThereminEnabled] = useState(false);
@@ -51,11 +50,11 @@ function App() {
             isActive={isThereminEnabled}
             onClick={() => setIsThereminEnabled(!isThereminEnabled)}
           >
-            {isThereminEnabled ? "Disable" : "Enable"} Rheremin
+            {isThereminEnabled ? "Disable" : "Enable"} Theremin
           </Button>
         </Container>
         <Container>
-        {isThereminEnabled && (
+          {isThereminEnabled && (
             <HandTrack
               onPositionChange={handleHandPositionChange}
               shouldRenderPredictions
