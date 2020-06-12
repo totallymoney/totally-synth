@@ -7,3 +7,10 @@ export const ButtonDisplay = styled.input`
   outline:none;
   text-align: center;
 `
+
+export const Heading = styled.p`
+  padding: 0;
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 600;
+`
