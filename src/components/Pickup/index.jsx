@@ -31,8 +31,20 @@ const TableControl = styled.div`
   height: auto;
   display: flex;
   align-self: flex-end;
-  border: 3px solid white;
   padding: 0.4rem;
+  border: 1px solid #000;
+  position: relative;
+  
+  &:after {
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: -1px;
+    right: 1px;
+    bottom: -1px;
+    border: 1px solid #444;
+  }
 `;
 
 const emptyGrid = Array.apply(null, Array(16));
@@ -88,9 +100,8 @@ function Pickup({
       </TablePanel>
       <TableControl>
         <SliderRegular name="Volume" />
-        <SliderRound name="Gain" />
-        <Button isPlaying={isPlaying}>Play</Button>
         <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} />
+        {/* <Button isActive={isPlaying}>Play</Button> */}
         {children}
       </TableControl>
       <SoundViz />

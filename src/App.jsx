@@ -4,21 +4,22 @@ import "./App.css";
 import StepSequencer from "./StepSequencer";
 import HandTrack from "./HandTrack";
 import Synth from "./Synth";
+import Button from "./components/ControlButtons/RegularButton" 
 
-const Button = styled.button`
-  background-color: ${(props) => (props.isActive ? "cyan" : "#7c909c")};
-  border-radius: 2px;
-  border: 0;
-  outline: none;
-  padding: 16px;
-  cursor: pointer;
+// const Button = styled.button`
+//   background-color: ${(props) => (props.isActive ? "cyan" : "#7c909c")};
+//   border-radius: 2px;
+//   border: 0;
+//   outline: none;
+//   padding: 16px;
+//   cursor: pointer;
 
-  font-size: 1.3em;
-  font-family: "Futura";
-  font-weight: 600;
+//   font-size: 1.3em;
+//   font-family: "Futura";
+//   font-weight: 600;
 
-  color: #000;
-`;
+//   color: #000;
+// `;
 
 function App() {
   const [isThereminEnabled, setIsThereminEnabled] = useState(false);
