@@ -29,11 +29,20 @@ const Heading = styled.p`
 `
 
 export const SliderRound = ({name='control', value, setValue}) => {
+
+  const [ sliderValue, setSliderValue ] = useState(value);
+
+  const handleSliderChange = (value) => {
+    setSliderValue(value);
+    if(setValue)
+      setValue(value);
+  }
+
   return (
     <ButtonContainerRound>
       <Heading>{name}</Heading>
-      <RoundSliderButton value={value} setValue={setValue}/>
-      <ButtonDisplay value={value} onChange={e => setValue(e.target.value)}/>
+      <RoundSliderButton value={sliderValue} setValue={handleSliderChange}/>
+      <ButtonDisplay value={sliderValue} onChange={e => handleSliderChange(e.target.value)}/>
     </ButtonContainerRound>
   )
 }
@@ -45,7 +54,8 @@ export const SliderRegular = ({name='control', value, setValue}) => {
 
   const handleSliderChange = (value) => {
     setSliderValue(value);
-    setValue(value);
+    if(setValue)
+      setValue(value);
   }
 
   return (

@@ -7,6 +7,9 @@ const RoundSlider = ({value, setValue}) => {
     <CircleSlider 
       value={value} 
       size={70} 
+      stepSize={0.05}
+      min={0}
+      max={1}
       knobRadius={10} 
       circleColor="black" 
       progressColor="rgba(0,0,0,0)"

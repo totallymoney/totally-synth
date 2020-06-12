@@ -38,14 +38,10 @@ const TableControl = styled.div`
 const emptyGrid = Array.apply(null, Array(16));
 const emptyNotes = Array.apply(null, Array(12));
 
-<<<<<<< HEAD
 const color = d3
   .scaleSequential()
   .domain([13, 1])
   .interpolator(d3.interpolateViridis);
-=======
-const color = d3.scaleSequential().domain([10,1]).interpolator(d3.interpolateSinebow);
->>>>>>> toggle reverb
 
 /**
  *
@@ -53,7 +49,7 @@ const color = d3.scaleSequential().domain([10,1]).interpolator(d3.interpolateSin
  * @param {*} currentStep
  * @param {*} isPlaying
  */
-function Pickup({ setCell, currentStep, isPlaying }) {
+function Pickup({ setCell, currentStep, isPlaying, setReverbWetness }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
 
   const toggleIsActive = (x, y) => {
@@ -88,6 +84,7 @@ function Pickup({ setCell, currentStep, isPlaying }) {
         <SliderRegular name="Volume" />
         <SliderRound name="Gain" />
         <Button isPlaying={isPlaying}>Play</Button>
+        <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} />
       </TableControl>
       <SoundViz />
     </Table>

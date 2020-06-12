@@ -43,8 +43,9 @@ const Slider = ({value, setValue}) => (
     <div>
       <SliderInput 
         type="range" 
-        min="1" 
-        max="100" 
+        min="0" 
+        max="1" 
+        step="0.05"
         value={value} 
         class="slider" 
         id="myRange" 
