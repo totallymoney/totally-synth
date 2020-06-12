@@ -1,8 +1,24 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import "./App.css";
 import StepSequencer from "./StepSequencer";
 import HandTrack from "./HandTrack";
 import Synth from "./Synth";
+
+const Button = styled.button`
+  background-color: ${(props) => (props.isActive ? "cyan" : "#7c909c")};
+  border-radius: 2px;
+  border: 0;
+  outline: none;
+  padding: 16px;
+  cursor: pointer;
+
+  font-size: 1.3em;
+  font-family: "Futura";
+  font-weight: 600;
+
+  color: #000;
+`;
 
 function App() {
   const [isThereminEnabled, setIsThereminEnabled] = useState(false);
@@ -15,9 +31,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => setIsThereminEnabled(!isThereminEnabled)}>
-        {isThereminEnabled ? "disable" : "enable"} theremin
-      </button>
       {isThereminEnabled && (
         <HandTrack
           onPositionChange={handleHandPositionChange}
@@ -25,7 +38,14 @@ function App() {
         />
       )}
       <Synth isPlaying={isThereminEnabled} frequency={frequencyFromPosition} />
-      <StepSequencer />
+      <StepSequencer>
+        <Button
+          isActive={isThereminEnabled}
+          onClick={() => setIsThereminEnabled(!isThereminEnabled)}
+        >
+          {isThereminEnabled ? "disable" : "enable"} theremin
+        </Button>
+      </StepSequencer>
     </div>
   );
 }
