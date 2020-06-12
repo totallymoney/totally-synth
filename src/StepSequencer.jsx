@@ -4,21 +4,20 @@ import { StepSequencer } from "./core/step-sequencer";
 import { Transport } from "tone";
 import Pickup from "./components/Pickup";
 
-function StepSequencerUI() {
+function StepSequencerUI({ children }) {
   const sequencerRef = useRef(null);
   const sequenceRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [ currentStep, setCurrentStep ] = useState(-1);
+  const [currentStep, setCurrentStep] = useState(-1);
   const initialise = () => {
     const sequencer = StepSequencer.Default();
     sequenceRef.current = sequencer.sequence();
-    sequencer.registerOnTickFunction(handleOnTick)
+    sequencer.registerOnTickFunction(handleOnTick);
     sequencerRef.current = sequencer;
     const synth = sequencer.connected();
     const reverb = new Reverb({ decay: 1, wet: 0.9 }).toMaster();
     synth.connect(reverb);
   };
-
 
   const handleCellClick = (step, note, velocity) => {
     if (!isPlaying) {
@@ -27,9 +26,9 @@ function StepSequencerUI() {
     sequencerRef.current.setCell(step, note, velocity);
   };
 
-  const handleOnTick = (_,step)=> {
-    setCurrentStep(step)
-  }
+  const handleOnTick = (_, step) => {
+    setCurrentStep(step);
+  };
 
   const toggleStart = () => {
     if (sequencerRef.current == null) {
@@ -51,7 +50,13 @@ function StepSequencerUI() {
 
   return (
     <div>
-      <Pickup setCell={handleCellClick} currentStep={currentStep} isPlaying={{setIsPlaying: setIsPlaying, isPlaying: isPlaying}}/>
+      <Pickup
+        setCell={handleCellClick}
+        currentStep={currentStep}
+        isPlaying={{ setIsPlaying: setIsPlaying, isPlaying: isPlaying }}
+      >
+        {children}
+      </Pickup>
     </div>
   );
 }

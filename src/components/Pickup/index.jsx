@@ -49,7 +49,7 @@ const color = d3
  * @param {*} currentStep
  * @param {*} isPlaying
  */
-function Pickup({ setCell, currentStep, isPlaying }) {
+function Pickup({ setCell, currentStep, isPlaying, children }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
 
   const toggleIsActive = (x, y) => {
@@ -84,6 +84,7 @@ function Pickup({ setCell, currentStep, isPlaying }) {
         <SliderRegular name="Volume" />
         <SliderRound name="Gain" />
         <Button isPlaying={isPlaying}>Play</Button>
+        {children}
       </TableControl>
       <SoundViz />
     </Table>
