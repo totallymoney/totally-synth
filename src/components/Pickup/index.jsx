@@ -44,6 +44,7 @@ const TableControl = styled.div`
     right: 1px;
     bottom: -1px;
     border: 1px solid #444;
+    pointer-events: none; /*This is the key.*/
   }
 `;
 
