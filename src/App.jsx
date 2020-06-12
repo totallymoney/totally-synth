@@ -4,22 +4,28 @@ import "./App.css";
 import StepSequencer from "./StepSequencer";
 import HandTrack from "./HandTrack";
 import Synth from "./Synth";
-import Button from "./components/ControlButtons/RegularButton" 
+// import Button from "./components/ControlButtons/RegularButton" 
 
-// const Button = styled.button`
-//   background-color: ${(props) => (props.isActive ? "cyan" : "#7c909c")};
-//   border-radius: 2px;
-//   border: 0;
-//   outline: none;
-//   padding: 16px;
-//   cursor: pointer;
+const Container = styled.div`
+  margin: 1px;
+  
+`
 
-//   font-size: 1.3em;
-//   font-family: "Futura";
-//   font-weight: 600;
+const Button = styled.button`
+  background-color: #7c909c;
+  border-radius: 2px;
+  border: 0;
+  outline: none;
+  padding: 16px;
+  cursor: pointer;
+  width: ${props=> props.size ? `${props.size}px` : 'auto'};
 
-//   color: #000;
-// `;
+  font-size: 1.3em;
+  font-family: 'Futura';
+  font-weight: 600;
+
+  color: ${props=> props.isActive ? 'cyan' : '#000'};
+`
 
 function App() {
   const [isThereminEnabled, setIsThereminEnabled] = useState(false);
@@ -40,18 +46,22 @@ function App() {
         />
       )}
       <StepSequencer>
-        <Button
-          isActive={isThereminEnabled}
-          onClick={() => setIsThereminEnabled(!isThereminEnabled)}
-        >
-          {isThereminEnabled ? "disable" : "enable"} theremin
-        </Button>
+        <Container>
+          <Button
+            isActive={isThereminEnabled}
+            onClick={() => setIsThereminEnabled(!isThereminEnabled)}
+          >
+            {isThereminEnabled ? "disable" : "enable"} theremin
+          </Button>
+        </Container>
+        <Container>
         {isThereminEnabled && (
-          <HandTrack
-            onPositionChange={handleHandPositionChange}
-            shouldRenderPredictions
-          />
-        )}
+            <HandTrack
+              onPositionChange={handleHandPositionChange}
+              shouldRenderPredictions
+            />
+          )}
+        </Container>
       </StepSequencer>
     </div>
   );
