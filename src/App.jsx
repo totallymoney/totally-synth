@@ -27,7 +27,8 @@ function App() {
     console.log("Detected position: ", position);
     setPosition(position);
   };
-  const frequencyFromPosition = position && position[2] > 0 ? position[2] : 0;
+  const frequencyFromPosition =
+    position && position[2] > 0 ? position[2] * 7 : 0;
 
   return (
     <div className="App">
