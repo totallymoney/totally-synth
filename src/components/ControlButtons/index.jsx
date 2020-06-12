@@ -21,7 +21,7 @@ const ButtonContainerRegular = styled(ButtonContainer)`
   width: 160px;
 `
 
-export const SliderRound = ({name='control', value, setValue}) => {
+export const SliderRound = ({name='control', value, setValue, min, max, step}) => {
 
   const [ sliderValue, setSliderValue ] = useState(value);
 
@@ -34,7 +34,7 @@ export const SliderRound = ({name='control', value, setValue}) => {
   return (
     <ButtonContainerRound>
       <Heading>{name}</Heading>
-      <RoundSliderButton value={sliderValue} setValue={handleSliderChange}/>
+      <RoundSliderButton value={sliderValue} setValue={handleSliderChange} min={min} max={max} step={step}/>
       <ButtonDisplay value={sliderValue} onChange={e => handleSliderChange(e.target.value)}/>
     </ButtonContainerRound>
   )

@@ -10,6 +10,9 @@ function Synth({ frequency, velocity, isPlaying }) {
 
   useEffect(() => {
     initialise();
+  }, []);
+
+  useEffect(() => {
     isPlaying ? oscRef.current.start() : oscRef.current.stop();
     return () => oscRef.current.stop();
   }, [isPlaying]);
