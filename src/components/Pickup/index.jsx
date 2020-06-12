@@ -71,7 +71,8 @@ function Pickup({
   handleChangeScale,
   children,
   scaleKeys,
-  handleVolume
+  handleVolume,
+  handleBPM
 }) {
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
 
@@ -107,6 +108,7 @@ function Pickup({
       <TableControl>
         <SliderRound name="Volume" setValue={handleVolume} min={-48} max={-1} step={1}/>
         <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} min={0} max={1} step={0.05}/>
+        <SliderRound name="BPM" value={120} setValue={handleBPM} min={0} max={300} step={10}/>
         <DropDown list={scaleKeys} getDropdownValue={handleChangeScale}/>
         {/* <Button isActive={isPlaying}>Play</Button> */}
         {children}

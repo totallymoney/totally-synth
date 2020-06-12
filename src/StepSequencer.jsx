@@ -43,6 +43,10 @@ function StepSequencerUI({ children }) {
       sequencerRef.current.connected().volume.value = value;
   }
 
+  const handleBPM = (value) => {
+    Transport.bpm.value = value;
+  }
+
   const scaleKeys = ["pretty", "dark", "mellow"];
   const scales = {
     pretty: [
@@ -121,6 +125,7 @@ function StepSequencerUI({ children }) {
         handleChangeScale={handleChangeScale}
         scaleKeys={scaleKeys}
         handleVolume={handleVolume}
+        handleBPM={handleBPM}
       >
         {children}
       </Pickup>
