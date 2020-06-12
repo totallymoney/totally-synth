@@ -38,44 +38,55 @@ function StepSequencerUI({ children }) {
     setCurrentStep(step);
   };
 
-  const scaleKeys = [ "pretty", "dark" ];
-  const scales = 
-    {
-      pretty : [
-        "C7",
-        "D6",
-        "E6",
-        "G5",
-        "A5",
-        "C5",
-        "D4",
-        "E4",
-        "G3",
-        "A3",
-        "C3",
-        "A2",
-      ],
-      dark: [
-        "C7",
-        "D6",
-        "D#6",
-        "G5",
-        "B5",
-        "C5",
-        "D4",
-        "D#4",
-        "G3",
-        "B3",
-        "C3",
-        "B2",
-      ],
-    }
-
-  const handleChangeScale = (scale) => {
-    if(sequencerRef.current)
-      sequencerRef.current.setNotes(scales[scale]);
+  const scaleKeys = ["pretty", "dark", "mellow"];
+  const scales = {
+    pretty: [
+      "C7",
+      "D6",
+      "E6",
+      "G5",
+      "A5",
+      "C5",
+      "D4",
+      "E4",
+      "G3",
+      "A3",
+      "C3",
+      "A2",
+    ],
+    dark: [
+      "C7",
+      "D6",
+      "D#6",
+      "G5",
+      "B5",
+      "C5",
+      "D4",
+      "D#4",
+      "G3",
+      "B3",
+      "C3",
+      "B2",
+    ],
+    mellow: [
+      "F#7",
+      "D6",
+      "B#6",
+      "G5",
+      "F#5",
+      "D5",
+      "B4",
+      "G4",
+      "F#3",
+      "D3",
+      "B3",
+      "G2",
+    ],
   };
 
+  const handleChangeScale = (scale) => {
+    if (sequencerRef.current) sequencerRef.current.setNotes(scales[scale]);
+  };
 
   const toggleStart = () => {
     if (sequencerRef.current == null) {
@@ -105,7 +116,7 @@ function StepSequencerUI({ children }) {
         handleChangeScale={handleChangeScale}
         scaleKeys={scaleKeys}
       >
-      {children}
+        {children}
       </Pickup>
     </div>
   );
