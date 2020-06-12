@@ -39,7 +39,7 @@ function StepSequencerUI({ children }) {
   };
 
   const scaleKeys = [ "pretty", "dark" ];
-  const scales = [
+  const scales = 
     {
       pretty : [
         "C7",
@@ -69,8 +69,7 @@ function StepSequencerUI({ children }) {
         "C3",
         "B2",
       ],
-    },
-  ];
+    }
 
   const handleChangeScale = (scale) => {
     if(sequencerRef.current)
