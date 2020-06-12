@@ -16,6 +16,7 @@ const Button = styled.button`
   outline: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.25s;
 `;
 
 const PkupButton = ({
