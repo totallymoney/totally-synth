@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import RoundSliderButton  from "./RoundSlider"
 import RegularSlider  from "./RegularSlider"
 
-import { ButtonDisplay } from "./styled-components"
+import { ButtonDisplay, Heading } from "./styled-components"
 
 const ButtonContainer = styled.div`
   background-color: #7c909c;
@@ -19,13 +19,6 @@ const ButtonContainerRound = styled(ButtonContainer)`
 
 const ButtonContainerRegular = styled(ButtonContainer)`
   width: 160px;
-`
-
-const Heading = styled.p`
-  padding: 0;
-  margin: 0;
-  font-size: 1.3em;
-  font-weight: 600;
 `
 
 export const SliderRound = ({name='control', value, setValue}) => {
