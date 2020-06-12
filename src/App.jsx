@@ -4,8 +4,6 @@ import StepSequencer from "./StepSequencer";
 import HandTrack from "./HandTrack";
 import Synth from "./Synth";
 
-import Pickup from "./components/Pickup";
-
 function App() {
   const [isThereminEnabled, setIsThereminEnabled] = useState(false);
   const [position, setPosition] = useState();
