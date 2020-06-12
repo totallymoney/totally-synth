@@ -51,7 +51,7 @@ function App() {
             isActive={isThereminEnabled}
             onClick={() => setIsThereminEnabled(!isThereminEnabled)}
           >
-            {isThereminEnabled ? "disable" : "enable"} theremin
+            {isThereminEnabled ? "Disable" : "Enable"} Rheremin
           </Button>
         </Container>
         <Container>
