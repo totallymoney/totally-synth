@@ -23,11 +23,16 @@ const ButtonWrapper = styled.button`
   color: ${props=> props.isActive ? 'cyan' : '#000'};
 `
 
-const Button = ({children="EFX", size}) => {
-  const [isActive, setIsActive] = useState(false)
+const Button = ({children="EFX", size, isPlaying}) => {
+  const [isActive, setIsActive] = useState(isPlaying.isPlaying)
+
+  const setActive = () => {
+    setIsActive(!isActive)
+    isPlaying.setIsPlaying(!isActive)
+  }
   return (
   <Container>
-    <ButtonWrapper size={size} isActive={isActive} onClick={()=>setIsActive(!isActive)} >{children}</ButtonWrapper>
+    <ButtonWrapper size={size} isActive={isActive} onClick={()=>setActive()} >{children}</ButtonWrapper>
   </Container>
 )};
 

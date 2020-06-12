@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import { SliderRound, SliderRegular } from "../ControlButtons/";
 import PkupButton from "../PkupButton";
 import Button from "../ControlButtons/RegularButton";
+import SoundViz from "../SoundViz"
 
 const Table = styled.div`
   margin: 0 auto;
@@ -38,7 +39,14 @@ const emptyNotes = Array.apply(null, Array(12));
 
 const color = d3.scaleSequential().domain([13,1]).interpolator(d3.interpolateViridis);
 
-function Pickup({ setCell, currentStep }) {
+
+/**
+ * 
+ * @param {*} setCell 
+ * @param {*} currentStep 
+ * @param {*} isPlaying 
+ */
+function Pickup({ setCell, currentStep, isPlaying }) {
 
   const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
   
@@ -76,8 +84,9 @@ function Pickup({ setCell, currentStep }) {
       <TableControl>
         <SliderRegular name="Volume" />
         <SliderRound name="Gain" />
-        <Button />
+        <Button isPlaying={isPlaying}>Play</Button>
       </TableControl>
+      <SoundViz/>
     </Table>
   );
 }

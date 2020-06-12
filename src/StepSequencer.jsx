@@ -51,7 +51,7 @@ function StepSequencerUI() {
 
   return (
     <div>
-      <Pickup setCell={handleCellClick} currentStep={currentStep} />
+      <Pickup setCell={handleCellClick} currentStep={currentStep} isPlaying={{setIsPlaying: setIsPlaying, isPlaying: isPlaying}}/>
     </div>
   );
 }
