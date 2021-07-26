@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react'
+import styled from 'styled-components'
 
 const Container = styled.section`
   display: inline-block;
   padding: 2px;
-`;
+`
 
 const Button = styled.button`
   background-color: ${(props) =>
-    props.isActive ? props.color : "rgba(255,255,255, 0)"};
+    props.isActive ? props.color : 'rgba(255,255,255, 0)'};
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
   border: 3px solid;
@@ -17,7 +17,7 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.25s;
-`;
+`
 
 const PkupButton = ({
   color,
@@ -36,7 +36,7 @@ const PkupButton = ({
         onClick={() => handleClick(step, note)}
       />
     </Container>
-  );
-};
+  )
+}
 
-export default PkupButton;
+export default PkupButton

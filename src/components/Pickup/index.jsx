@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import * as d3 from "d3";
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import * as d3 from 'd3'
 
-import { SliderRound, SliderRegular } from "../ControlButtons/";
-import PkupButton from "../PkupButton";
-import Button from "../ControlButtons/RegularButton";
-import DropDown from "../ControlButtons/DropDown";
-import SoundViz from "../SoundViz";
+import { SliderRound, SliderRegular } from '../ControlButtons/'
+import PkupButton from '../PkupButton'
+import Button from '../ControlButtons/RegularButton'
+import DropDown from '../ControlButtons/DropDown'
+import SoundViz from '../SoundViz'
 
 const Table = styled.div`
   margin: 0 auto;
@@ -16,16 +16,16 @@ const Table = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+`
 
 const TableLine = styled.div`
   width: 100%;
-`;
+`
 
 const TablePanel = styled.div`
   padding-top: 2.4em;
   padding-bottom: 2.4em;
-`;
+`
 
 const TableControl = styled.div`
   width: 100%;
@@ -35,9 +35,9 @@ const TableControl = styled.div`
   padding: 0.4rem;
   border: 1px solid #000;
   position: relative;
-  
+
   &:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     z-index: 1;
     top: 1px;
@@ -47,15 +47,15 @@ const TableControl = styled.div`
     border: 1px solid #444;
     pointer-events: none; /*This is the key.*/
   }
-`;
+`
 
-const emptyGrid = Array.apply(null, Array(16));
-const emptyNotes = Array.apply(null, Array(12));
+const emptyGrid = Array.apply(null, Array(16))
+const emptyNotes = Array.apply(null, Array(12))
 
 const color = d3
   .scaleSequential()
   .domain([13, 1])
-  .interpolator(d3.interpolateViridis);
+  .interpolator(d3.interpolateViridis)
 
 /**
  *
@@ -72,19 +72,19 @@ function Pickup({
   children,
   scaleKeys,
   handleVolume,
-  handleBPM
+  handleBPM,
 }) {
-  const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]));
+  const [grid, setGrid] = useState(() => emptyGrid.map(() => [...emptyNotes]))
 
   const toggleIsActive = (x, y) => {
-    const newGrid = grid.map((notes) => [...notes]);
-    newGrid[x][y] = !newGrid[x][y];
-    setGrid(newGrid);
-    setCell(x, y, newGrid[x][y]);
-  };
+    const newGrid = grid.map((notes) => [...notes])
+    newGrid[x][y] = !newGrid[x][y]
+    setGrid(newGrid)
+    setCell(x, y, newGrid[x][y])
+  }
 
   const getColor = (noteIndex, stepIndex) =>
-    stepIndex === currentStep ? "cyan" : color(noteIndex);
+    stepIndex === currentStep ? 'cyan' : color(noteIndex)
 
   return (
     <Table>
@@ -106,16 +106,36 @@ function Pickup({
         ))}
       </TablePanel>
       <TableControl>
-        <SliderRound name="Volume" setValue={handleVolume} min={-48} max={-1} step={1}/>
-        <SliderRound name="Reverb" value={0.5} setValue={setReverbWetness} min={0} max={1} step={0.05}/>
-        <SliderRound name="BPM" value={120} setValue={handleBPM} min={0} max={300} step={10}/>
-        <DropDown list={scaleKeys} getDropdownValue={handleChangeScale}/>
+        <SliderRound
+          name="Volume"
+          setValue={handleVolume}
+          min={-48}
+          max={-1}
+          step={1}
+        />
+        <SliderRound
+          name="Reverb"
+          value={0.5}
+          setValue={setReverbWetness}
+          min={0}
+          max={1}
+          step={0.05}
+        />
+        <SliderRound
+          name="BPM"
+          value={120}
+          setValue={handleBPM}
+          min={0}
+          max={300}
+          step={10}
+        />
+        <DropDown list={scaleKeys} getDropdownValue={handleChangeScale} />
         {/* <Button isActive={isPlaying}>Play</Button> */}
         {children}
       </TableControl>
       <SoundViz />
     </Table>
-  );
+  )
 }
 
-export default Pickup;
+export default Pickup

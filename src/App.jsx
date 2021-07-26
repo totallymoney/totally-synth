@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import "./App.css";
-import StepSequencer from "./StepSequencer";
-import HandTrack from "./HandTrack";
-import Synth from "./Synth";
-// import Button from "./components/ControlButtons/RegularButton"
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import './App.css'
+import StepSequencer from './StepSequencer'
+import HandTrack from './HandTrack'
+import Synth from './Synth'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1px;
-`;
+`
 
 const Button = styled.button`
   background-color: #7c909c;
@@ -19,27 +18,27 @@ const Button = styled.button`
   outline: none;
   padding: 16px;
   cursor: pointer;
-  width: ${(props) => (props.size ? `${props.size}px` : "auto")};
+  width: ${(props) => (props.size ? `${props.size}px` : 'auto')};
 
   margin-bottom: 2px;
-  
+
   font-size: 1.3em;
-  font-family: "Futura";
+  font-family: 'Futura';
   font-weight: 600;
 
-  color: ${(props) => (props.isActive ? "cyan" : "#000")};
-`;
+  color: ${(props) => (props.isActive ? 'cyan' : '#000')};
+`
 
 function App() {
-  const [isThereminEnabled, setIsThereminEnabled] = useState(false);
-  const [shouldRenderPredictions, setShouldRenderPredictions] = useState(false);
-  const [position, setPosition] = useState();
+  const [isThereminEnabled, setIsThereminEnabled] = useState(false)
+  const [shouldRenderPredictions, setShouldRenderPredictions] = useState(false)
+  const [position, setPosition] = useState()
   const handleHandPositionChange = (position) => {
-    console.log("Detected position: ", position);
-    setPosition(position);
-  };
+    console.log('Detected position: ', position)
+    setPosition(position)
+  }
   const frequencyFromPosition =
-    position && position[2] > 0 ? position[2] * 7 : 0;
+    position && position[2] > 0 ? position[2] * 7 : 0
 
   return (
     <div className="App">
@@ -56,7 +55,7 @@ function App() {
             isActive={isThereminEnabled}
             onClick={() => setIsThereminEnabled(!isThereminEnabled)}
           >
-            {isThereminEnabled ? "Disable" : "Enable"} Theremin
+            {isThereminEnabled ? 'Disable' : 'Enable'} Theremin
           </Button>
         </Container>
         <Container>
@@ -69,7 +68,7 @@ function App() {
         </Container>
       </StepSequencer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

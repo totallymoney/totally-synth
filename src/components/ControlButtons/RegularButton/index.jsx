@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import styled from 'styled-components'
-
 
 const Container = styled.div`
   margin: 1px;
-  
 `
 
 const ButtonWrapper = styled.button`
@@ -14,16 +12,16 @@ const ButtonWrapper = styled.button`
   outline: none;
   padding: 16px;
   cursor: pointer;
-  width: ${props=> props.size ? `${props.size}px` : 'auto'};
+  width: ${(props) => (props.size ? `${props.size}px` : 'auto')};
 
   font-size: 1.3em;
   font-family: 'Futura';
   font-weight: 600;
 
-  color: ${props=> props.isActive ? 'cyan' : '#000'};
+  color: ${(props) => (props.isActive ? 'cyan' : '#000')};
 `
 
-const Button = ({children="EFX", size, isActive}) => {
+const Button = ({ children = 'EFX', size, isActive }) => {
   const [Active, setActive] = useState(isActive.isPlaying)
 
   const setIsActive = () => {
@@ -33,10 +31,11 @@ const Button = ({children="EFX", size, isActive}) => {
 
   return (
     <Container>
-      <ButtonWrapper size={size} isActive={Active}>{children}</ButtonWrapper>
+      <ButtonWrapper size={size} isActive={Active}>
+        {children}
+      </ButtonWrapper>
     </Container>
   )
-};
+}
 
 export default Button
-

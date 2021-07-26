@@ -16,7 +16,7 @@
     "react": "^16.13.1",
     "react-circle-slider": "^1.6.2",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "styled-components": "^5.1.1",
     "tone": "^14.7.7",
     "typescript": "~3.7.2"
@@ -45,7 +45,13 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.10.1",
     "@types/styled-components": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
     "customize-cra": "^1.0.0",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
     "react-app-rewired": "^2.1.6"
   }
 }
