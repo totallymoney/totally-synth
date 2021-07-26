@@ -1,4 +1,20 @@
-# big-hack-synth
+# TotallySynth
+### The Best Overall Hack at the TotallyMoney Big Hack Day 2020
+
+A musical instrument controlled via hand-tracking running in a browser. Built in 24 hours.
+
+<img src="https://user-images.githubusercontent.com/7452681/126981746-32a41023-4303-4daa-926c-bc73a12f0c87.png" width="350" />
+
+## How to use it
+### Live site
+https://www.thebighack.net/totally-synth/
+
+### To run locally
+Clone this repo and run:
+```
+yarn && yarn start
+```
+
 
 ## Contributors
 <table>
@@ -14,3 +30,7 @@
     </td>
   </tr>
   </table>
+  
+## Links
+[How I built a musical instrument controlled via hand-tracking running in a browser in 24 hours](https://makowski.uk/bighack/)
+
