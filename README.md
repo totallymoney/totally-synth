@@ -32,5 +32,5 @@ yarn && yarn start
   </table>
   
 ## Links
-[How I built a musical instrument controlled via hand-tracking running in a browser in 24 hours](https://makowski.uk/bighack/)
+[How I built a musical instrument controlled via hand-tracking running in a browser in 24 hours](https://makowski.uk/posts/bighack/)
 
